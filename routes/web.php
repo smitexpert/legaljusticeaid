@@ -70,6 +70,8 @@ Route::group(['middleware' => 'managerRoute'], function () {
   Route::post('/admin/lawyers/edit/{id}', "LawyerController@update");
   Route::get('/admin/lawyers/property/{id}', "LawyerPropertyController@index");
   Route::post('/admin/lawyers/property/{id}', "LawyerPropertyController@update");
+  Route::post('/admin/lawyers/property/{id}', "LawyerPropertyController@update");
+  Route::get('/admin/ratings', 'ModerationController@ratings');
 });
 
 Auth::routes();

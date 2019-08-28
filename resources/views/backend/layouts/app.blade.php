@@ -163,6 +163,7 @@
                         </a>
                         <div class="collapse" id="moderation-area">
                             <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/ratings') }}">Ratings</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/comments') }}">Comments</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/questions') }}">Questions</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/answers') }}">Answers</a></li>

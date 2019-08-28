@@ -21,4 +21,8 @@ class LawyerRatings extends Model
     public function user(){
         return $this->hasOne('App\User', 'id', 'users_id');
     }
+
+    public function lawyer(){
+        return $this->hasOne('App\Lawyer', 'id', 'lawyers_id');
+    }
 }
