@@ -85,6 +85,11 @@
                     <p>{{ session('message') }}</p>
                 </li>
                 @endif
+                @if ($errors->any())
+                <li>
+                    <p>Your Rating Already Submited!</p>
+                </li>
+                @endif
                 @if (Auth::user())
                     @if ($lawyer->ratings->where('users_id', Auth::user()->id)->count() > 0)
                         <li>
@@ -118,11 +123,15 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="feedback">Feedback</label>
-                                                <textarea class="form-control" name="feedback" id="feedback" required></textarea>
+                                                <textarea class="form-control" name="feedback" id="feedback"></textarea>
+                                                @error('feedback')
+                                                    <label class="error mt-2 text-danger">{{ $message }}</label>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>

@@ -40,6 +40,19 @@
             font-size: 18px;
             color: #f2b01e;
         }
+
+.attorney-social {
+    text-align: left;
+    border-top: none;
+    margin-top: -10px;
+    padding: 0;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.attorney-social li {
+    display: inline-block;
+}
     </style>
 
     @stack('styles')
@@ -151,10 +164,13 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/services') }}">Legal Services</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/blogs') }}">Legal Blogs</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/questions') }}">Questions</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/blogs/categories') }}">Categories</a></li>
                             </ul>
                         </div>
                     </li>
+                    @endif
+
+                    @if ( Auth::user()->user_role <= 4 )
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#moderation-area" aria-expanded="false" aria-controls="moderation-area">
                             <i class="mdi mdi-view-array menu-icon"></i>
@@ -164,9 +180,9 @@
                         <div class="collapse" id="moderation-area">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/ratings') }}">Ratings</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/comments') }}">Comments</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/questions') }}">Questions</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/answers') }}">Answers</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/comments') }}">Comments</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/questions') }}">Questions</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/answers') }}">Answers</a></li>
                             </ul>
                         </div>
                     </li>

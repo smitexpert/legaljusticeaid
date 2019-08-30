@@ -8,6 +8,7 @@ use App\LawyerRatings;
 use App\PracticeArea;
 use App\Specialization;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class LawyerViewController extends Controller
@@ -35,7 +36,7 @@ class LawyerViewController extends Controller
         $request->validate([
             'rate' => 'required',
             'feedback' => 'required',
-            'user' => 'required',
+            'user' => 'required|unique:lawyer_ratings,users_id',
             'lawyer' => 'required'
         ]);
 
@@ -43,7 +44,8 @@ class LawyerViewController extends Controller
             'ratings' => $request->rate,
             'feedback' => $request->feedback,
             'users_id' => $request->user,
-            'lawyers_id' => $request->lawyer
+            'lawyers_id' => $request->lawyer,
+            'created_at' => Carbon::now()
         ]);
 
         return back()->with('message', 'Your Feedback submitted successfully!');

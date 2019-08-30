@@ -1,8 +1,8 @@
 @extends('backend.layouts.app')
 @section('topbutton')
 <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-warning" href="{{ url('/admin/ratings/trush') }}">
-        <i class="mdi mdi mdi-magnify"></i> View Trush
+    <a class="btn btn-sm btn-success" href="{{ url('/admin/ratings') }}">
+        <i class="mdi mdi-arrow-left"></i> Back
     </a>
 </li>
 @endsection
@@ -53,14 +53,9 @@
                                             @endif</td>
                                             <td>
                                                     <div class="btn-group">
-                                                            <a href="{{ url('admin/ratings/remove') }}/{{ $rating->id }}" class="btn btn-sm btn-danger">Remove</a>
-                                                            <a href="{{ url('admin/ratings/view') }}/{{ $rating->id }}" class="btn btn-sm btn-primary" >View</a>
-                                                            @if ($rating->status == 0)
-                                                                <a href="{{ url('admin/ratings/approve') }}/{{ $rating->id }}" class="btn btn-sm btn-success">Approve</a>
-                                                            @else
-                                                                <a href="{{ url('admin/ratings/disapprove') }}/{{ $rating->id }}" class="btn btn-sm btn-warning">Disapprove</a>
-                                                            @endif
-                                                        </div>
+                                                        <a href="{{ url('admin/ratings/restore') }}/{{ $rating->id }}" class="btn btn-sm btn-primary">Resoter</a>
+                                                        <a href="{{ url('admin/ratings/delete') }}/{{ $rating->id }}" class="btn btn-sm btn-danger" >Delete</a>
+                                                    </div>
                                             </td>
                                         </tr>
                                     @endforeach

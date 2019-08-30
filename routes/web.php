@@ -71,7 +71,28 @@ Route::group(['middleware' => 'managerRoute'], function () {
   Route::get('/admin/lawyers/property/{id}', "LawyerPropertyController@index");
   Route::post('/admin/lawyers/property/{id}', "LawyerPropertyController@update");
   Route::post('/admin/lawyers/property/{id}', "LawyerPropertyController@update");
+
+});
+
+Route::group(['middleware' => 'authorRoute'], function(){
+  Route::get('/admin/blogs', 'LegalBlogController@index');
+  Route::get('/admin/add/blogs', 'LegalBlogController@add');
+  Route::get('/admin/blogs/categories', 'LegalBlogController@categories');
+});
+
+Route::group(['middleware' => 'moderatorRoute'], function(){
   Route::get('/admin/ratings', 'ModerationController@ratings');
+  Route::get('/admin/ratings/remove/{id}', 'ModerationController@remove');
+  Route::get('/admin/ratings/view/{id}', 'ModerationController@view');
+  Route::get('/admin/ratings/trush', 'ModerationController@trush');
+  Route::get('/admin/ratings/delete/{id}', 'ModerationController@delete');
+  Route::get('/admin/ratings/restore/{id}', 'ModerationController@restore');
+  Route::get('/admin/ratings/approve/{id}', 'ModerationController@approve');
+  Route::get('/admin/ratings/disapprove/{id}', 'ModerationController@disapprove');
+
+  Route::get('/admin/moderations/questions', 'QuestionsModerationController@index');
+  Route::get('/admin/moderations/comments', 'QuestionsModerationController@comments');
+  Route::get('/admin/moderations/answers', 'QuestionsModerationController@answers');
 });
 
 Auth::routes();

@@ -14,8 +14,8 @@ class LawyerRatings extends Model
         'lawyers_id',
         'users_id',
         'ratings',
-        'feedback_title',
-        'feedback'
+        'feedback',
+        'status'
     ];
 
     public function user(){

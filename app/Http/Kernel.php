@@ -53,6 +53,10 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AuthorMiddleware::class,
         ],
 
+        'moderatorRoute' => [
+            \App\Http\Middleware\ModeratorMiddleware::class,
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
