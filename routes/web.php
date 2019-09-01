@@ -78,6 +78,7 @@ Route::group(['middleware' => 'authorRoute'], function(){
   Route::get('/admin/blogs', 'LegalBlogController@index');
   Route::get('/admin/add/blogs', 'LegalBlogController@add');
   Route::get('/admin/blogs/categories', 'LegalBlogController@categories');
+  Route::post('/admin/blogs/categories', 'LegalBlogController@addCategories');
 });
 
 Route::group(['middleware' => 'moderatorRoute'], function(){

@@ -1,5 +1,17 @@
 @extends('backend.layouts.app')
 @section('content')
+<div class="row">
+    <div class="col-md-12">
+        @if(session('status'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success</strong> {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
+</div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -12,32 +24,37 @@
                                     <tr>
                                         <th style="width: 10px;">#</th>
                                         <th>Name</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>Name Here</td>
-                                        <td>Active</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a href="#" class="btn btn-sm btn-info">Edit</a>
-                                                <a href="#" class="btn btn-sm btn-danger">Remove</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($categories as $category)
+                                        <tr>
+                                            <td class="text-center">{{ $loop->index+1 }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a href="#" class="btn btn-sm btn-info">Edit</a>
+                                                    <a href="#" class="btn btn-sm btn-danger">Remove</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-md-6">
-                            <form action="">
+                            <form action="{{ url('/admin/blogs/categories') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="from-group">
                                             <label for="">Category Name</label>
                                             <input type="text" name="category" class="form-control">
+                                            @error('category')
+                                            <label class="error mt-2 text-danger" for="">{{ $message }}</label>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
