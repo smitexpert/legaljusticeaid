@@ -91,14 +91,14 @@
                 </li>
                 @endif
                 @if (Auth::user())
-                    @if ($lawyer->ratings->where('users_id', Auth::user()->id)->count() > 0)
+                    @if ($lawyer->userRatings->where('users_id', Auth::user()->id)->count() > 0)
                         <li>
                             <h2>Your Ratings</h2>
-                            <h3>{{ $lawyer->ratings->where('users_id', Auth::user()->id)->first()->feedback_title }}</h3>
+                            <h3>{{ $lawyer->userRatings->where('users_id', Auth::user()->id)->first()->feedback_title }}</h3>
                             <ul class="attorney-social">
-                                {!! SingleRating($lawyer->ratings->where('users_id', Auth::user()->id)->first()->ratings) !!}
+                                {!! SingleRating($lawyer->userRatings->where('users_id', Auth::user()->id)->first()->ratings) !!}
                             </ul>
-                            <p>{{ $lawyer->ratings->where('users_id', Auth::user()->id)->first()->feedback }}</p>
+                            <p>{{ $lawyer->userRatings->where('users_id', Auth::user()->id)->first()->feedback }}</p>
                         </li>
                     @else
                         <li>

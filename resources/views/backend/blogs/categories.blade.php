@@ -1,4 +1,11 @@
 @extends('backend.layouts.app')
+@section('topbutton')
+<li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
+    <a class="btn btn-sm btn-warning" href="{{ url('/admin/blogs/categories/trush') }}">
+        <i class="mdi mdi-magnify"></i> Trush
+    </a>
+</li>
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -34,8 +41,8 @@
                                             <td>{{ $category->name }}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="#" class="btn btn-sm btn-info">Edit</a>
-                                                    <a href="#" class="btn btn-sm btn-danger">Remove</a>
+                                                    <a href="{{ url("/admin/blogs/categories/edit") }}/{{ $category->id }}" class="btn btn-sm btn-info">Edit</a>
+                                                    <a href="{{ url("/admin/blogs/categories/remove") }}/{{ $category->id }}" class="btn btn-sm btn-danger">Remove</a>
                                                 </div>
                                             </td>
                                         </tr>

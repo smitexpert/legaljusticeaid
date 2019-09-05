@@ -59,4 +59,8 @@ class Lawyer extends Model
         return $this->hasMany('App\LawyerRatings', 'lawyers_id', 'id')->where('status', 1)->orderBy('id','DESC');
     }
 
+    public function userRatings(){
+        return $this->hasMany('App\LawyerRatings', 'lawyers_id', 'id')->orderBy('id','DESC');
+    }
+
 }

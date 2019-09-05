@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/base/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{ asset("") }}dist/css/bootstrap-select.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -240,6 +241,7 @@
     <script src="{{asset('js/settings.js')}}"></script>
     <script src="{{asset('js/todolist.js')}}"></script>
     <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset("") }}dist/js/bootstrap-select.min.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{asset('js/dashboard.js')}}"></script>

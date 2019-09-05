@@ -36,7 +36,7 @@ class LawyerViewController extends Controller
         $request->validate([
             'rate' => 'required',
             'feedback' => 'required',
-            'user' => 'required|unique:lawyer_ratings,users_id',
+            'user' => 'required',
             'lawyer' => 'required'
         ]);
 

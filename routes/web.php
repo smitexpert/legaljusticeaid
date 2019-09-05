@@ -79,6 +79,14 @@ Route::group(['middleware' => 'authorRoute'], function(){
   Route::get('/admin/add/blogs', 'LegalBlogController@add');
   Route::get('/admin/blogs/categories', 'LegalBlogController@categories');
   Route::post('/admin/blogs/categories', 'LegalBlogController@addCategories');
+  Route::get('/admin/blogs/categories/remove/{id}', 'LegalBlogController@removeCategory');
+  Route::get('/admin/blogs/categories/trush', 'LegalBlogController@categoryTrush');
+  Route::get('/admin/blogs/categories/restore/{id}', 'LegalBlogController@categoryRestore');
+  Route::get('/admin/blogs/categories/delete/{id}', 'LegalBlogController@categoryDelete');
+  Route::get('/admin/blogs/categories/edit/{id}', 'LegalBlogController@categoryEdit');
+  Route::post('/admin/blogs/categories/edit/{id}', 'LegalBlogController@categoryUpdate');
+  
+  Route::post('/admin/add/blogs', 'LegalBlogController@addPost');
 });
 
 Route::group(['middleware' => 'moderatorRoute'], function(){
