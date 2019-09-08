@@ -71,6 +71,9 @@ Route::group(['middleware' => 'managerRoute'], function () {
   Route::get('/admin/lawyers/property/{id}', "LawyerPropertyController@index");
   Route::post('/admin/lawyers/property/{id}', "LawyerPropertyController@update");
   Route::post('/admin/lawyers/property/{id}', "LawyerPropertyController@update");
+  
+  Route::get('/admin/all/blogs', 'LegalBlogController@allPost');
+  Route::get('/admin/all/trush/blogs', 'LegalBlogController@allTrush');
 
 });
 
@@ -85,8 +88,13 @@ Route::group(['middleware' => 'authorRoute'], function(){
   Route::get('/admin/blogs/categories/delete/{id}', 'LegalBlogController@categoryDelete');
   Route::get('/admin/blogs/categories/edit/{id}', 'LegalBlogController@categoryEdit');
   Route::post('/admin/blogs/categories/edit/{id}', 'LegalBlogController@categoryUpdate');
-  
+  Route::get('/admin/blogs/remove/{id}', 'LegalBlogController@postRemove');
+  Route::get('/admin/blogs/edit/{id}', 'LegalBlogController@postEdit');
+  Route::post('/admin/blogs/edit/{id}', 'LegalBlogController@postUpdate');
   Route::post('/admin/add/blogs', 'LegalBlogController@addPost');
+  Route::get('/admin/trush/blogs', 'LegalBlogController@trush');
+  Route::get('/admin/blogs/trush/delete/{id}', 'LegalBlogController@trushDelete');
+  Route::get('/admin/blogs/trush/restore/{id}', 'LegalBlogController@trushRestore');
 });
 
 Route::group(['middleware' => 'moderatorRoute'], function(){
@@ -112,6 +120,9 @@ Route::post('/lawyers/{slug}', "LawyerViewController@postFeedback");
 Route::get('/lawyers/practice-areas/{slug}', "LawyerViewController@practiceAreas");
 Route::get('/lawyers/specializations/{slug}', "LawyerViewController@specializations");
 Route::get('/lawyers/courts/{slug}', "LawyerViewController@courts");
+
+Route::get('/blogs', "BlogViewController@index");
+Route::get('/blogs/{slug}', "BlogViewController@singleView");
 
 Route::get('test', function () {
     return view("frontend.test");

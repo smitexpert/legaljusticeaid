@@ -41,7 +41,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4>Add New Post</h4>
-                    <form action="/admin/add/blogs" method="POST" enctype="multipart/form-data">
+                    <form action="/admin/blogs/edit/{{ $post->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -56,7 +56,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group @error('title') has-danger @enderror">
                                             <label for="">Title</label>
-                                            <input type="text" name="title" class="form-control" value="{{ old('title') }}">
+                                            <input type="text" name="title" class="form-control" value="@if(old('title')){{ old('title')}}@else{{ $post->title }}@endif">
                                             @error('title')
                                                 <label for="" class="error mt-2 text-danger">{{ $message }}</label>
                                             @enderror
@@ -76,7 +76,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group @error('details') has-danger @enderror">
                                             <label for="">Description</label>
-                                            <textarea class="form-control" name="details" id="details" cols="30" rows="10">{{ old("details") }}</textarea>
+                                            <textarea class="form-control" name="details" id="details" cols="30" rows="10">@if(old('title')){{ old('title')}}@else{{ $post->article }}@endif</textarea>
                                             @error('details')
                                                 <label for="" class="error mt-2 text-danger">{{ $message }}</label>
                                             @enderror
@@ -90,7 +90,12 @@
                                             <select name="category" id="" class="form-control selectpicker" data-live-search="true">
                                                 <option value="">Select</option>
                                                 @foreach ($categories as $category)
+                                                    @if($category->id == $post->category()->firstOrFail()->id)
+                                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                                    @else
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endif
+                                                    
                                                 @endforeach
                                             </select>
                                             @error('category')
@@ -115,6 +120,9 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="input-tags">
+                                                        @foreach ($post->tags as $tag)
+                                                            <div class="tag">{{ $tag->tag }} <i onclick="removeTags(event)" class="fa fa-close"></i><input type="hidden" name="tags[]" value="{{ $tag->tag }}"></div>
+                                                        @endforeach
                                                 </div>
                                             </div>
                                         </div>

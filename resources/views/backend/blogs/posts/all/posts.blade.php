@@ -1,28 +1,10 @@
 @extends('backend.layouts.app')
 @section('topbutton')
 <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-success" href="{{ url('/admin/add/blogs') }}">
-        <i class="mdi mdi-plus"></i> Add New Post
+    <a class="btn btn-sm btn-success" href="{{ url('/admin/blogs') }}">
+        <i class="mdi mdi-arrow-left"></i> Back
     </a>
 </li>
-@if (Auth::user()->user_role <= 2)
-<li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-info" href="{{ url('/admin/all/blogs') }}">
-        <i class="mdi mdi-magnify"></i> View All Posts
-    </a>
-</li>
-<li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-warning" href="{{ url('/admin/all/trush/blogs') }}">
-        <i class="mdi mdi-magnify"></i> All Trush
-    </a>
-</li>
-@endif
-<li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-warning" href="{{ url('/admin/trush/blogs') }}">
-        <i class="mdi mdi-magnify"></i> Trush
-    </a>
-</li>
-
 @endsection
 @section('content')
 <div class="row">

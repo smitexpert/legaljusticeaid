@@ -108,6 +108,7 @@
               <ul class="nav navbar-nav">
                   <li> <a href="{{ url("/") }}" class="{{ request()->is('/') ? 'active' : '' }}"> Home </a></li>
                   <li> <a href="{{ url("lawyers") }}" class="{{ request()->is('lawyers') ? 'active' : '' }}"> Find A Lawyer </a></li>
+                  <li> <a href="{{ url("blogs") }}" class="{{ request()->is('blogs') ? 'active' : '' }}"> Blogs </a></li>
                   <li> <a href="about.html"> About </a></li>
                   <li> <a href="service.html"> services </a></li>
                 </ul>
