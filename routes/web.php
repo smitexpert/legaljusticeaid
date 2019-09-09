@@ -108,8 +108,18 @@ Route::group(['middleware' => 'moderatorRoute'], function(){
   Route::get('/admin/ratings/disapprove/{id}', 'ModerationController@disapprove');
 
   Route::get('/admin/moderations/questions', 'QuestionsModerationController@index');
-  Route::get('/admin/moderations/comments', 'QuestionsModerationController@comments');
   Route::get('/admin/moderations/answers', 'QuestionsModerationController@answers');
+  
+  Route::get('/admin/moderations/comments', 'CommentController@index');
+  Route::get('/admin/moderations/comments/approve/{id}', 'CommentController@approve');
+  Route::get('/admin/moderations/comments/remove/{id}', 'CommentController@remove');
+  
+  Route::get('/admin/moderations/comments/trush', 'CommentController@trush');
+  
+  
+  Route::get('/admin/moderations/comments/restore/{id}', 'CommentController@restore');
+  
+  Route::get('/admin/moderations/comments/delete/{id}', 'CommentController@delete');
 });
 
 Auth::routes();
@@ -123,6 +133,7 @@ Route::get('/lawyers/courts/{slug}', "LawyerViewController@courts");
 
 Route::get('/blogs', "BlogViewController@index");
 Route::get('/blogs/{slug}', "BlogViewController@singleView");
+Route::post('blog/comment/{id}', "BlogCommentController@addComment");
 
 Route::get('test', function () {
     return view("frontend.test");

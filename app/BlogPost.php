@@ -37,4 +37,8 @@ class BlogPost extends Model
     public function tags(){
         return $this->hasMany('App\BlogPostTag', 'post_id', 'id');
     }
+
+    public function comments(){
+        return $this->hasMany('App\BlogComment', 'post_id', 'id');
+    }
 }

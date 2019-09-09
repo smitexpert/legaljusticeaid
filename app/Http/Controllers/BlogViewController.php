@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class BlogViewController extends Controller
 {
     public function index(){
-        $posts = BlogPost::paginate(10);
+        $posts = BlogPost::orderBy('id', 'desc')->paginate(10);
         return view('frontend.blogs.view', compact('posts'));
     }
 

@@ -15,10 +15,6 @@ class QuestionsModerationController extends Controller
         return view('backend.moderations.questions');
     }
 
-    public function comments(){
-        return view('backend.moderations.comments');
-    }
-
     public function answers(){
         return view('backend.moderations.answers');
     }
