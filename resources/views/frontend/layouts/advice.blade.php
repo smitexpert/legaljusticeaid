@@ -25,10 +25,10 @@
             </div>
 
             <div class="widget">
-                <h5 class="widget-title">Categories</h5>
+                <h5 class="widget-title">Adivce Categories</h5>
                 <ul class="categories">
-                    @foreach (App\BlogCategory::all() as $category)
-                        <li><a href="{{ url('blogs/category') }}/{{ $category->slug }}"> {{ $category->name }} ({{ App\BlogPostCategory::where('cateogry_id', $category->id)->count() }})</a></li>
+                    @foreach (App\PracticeArea::all() as $advice)
+                        <li><a href="{{ url('/blogs/category') }}/{{ $advice->slug }}"> {{ $advice->name }} (00)</a></li>
                     @endforeach
                 </ul>
             </div>

@@ -13,4 +13,15 @@ class BlogCategory extends Model
         'name',
         'slug'
     ];
+
+    public function posts(){
+        return $this->hasManyThrough(
+            'App\BlogPost',
+            'App\BlogPostCategory',
+            'cateogry_id',
+            'id',
+            'id',
+            'post_id'
+        );
+    }
 }

@@ -5,6 +5,11 @@
         <i class="mdi mdi-magnify"></i> Trush
     </a>
 </li>
+<li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
+    <a class="btn btn-sm btn-success" href="{{ url('/admin/moderations/comments/all') }}">
+        <i class="mdi mdi-magnify"></i> All
+    </a>
+</li>
 @endsection
 @section('content')
 <div class="row">

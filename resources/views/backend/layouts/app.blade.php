@@ -114,6 +114,12 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a target="_blank" class="nav-link" href="{{ url('/') }}">
+                            <i class="mdi  mdi-desktop-mac menu-icon"></i>
+                            <span class="menu-title">Site</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('/admin/dashboard') }}">
                             <i class="mdi  mdi-desktop-mac menu-icon"></i>
                             <span class="menu-title">Dashboard</span>

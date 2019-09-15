@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BlogComment;
+use App\BlogPost;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -44,5 +45,16 @@ class CommentController extends Controller
     public function delete($id){
         BlogComment::onlyTrashed()->where('id', $id)->forceDelete();
         return back()->with('status', 'Comment Deleted Successfully!');
+    }
+
+    public function all(){
+        $posts = BlogPost::where('status', 1)->get();
+        return view('backend.moderations.comments.all', compact('posts'));
+    }
+
+    public function postComments($id){
+        $comments = BlogComment::where('post_id', $id)->get();
+        $post = BlogPost::findOrFail($id);
+        return view('backend.moderations.comments.postcomment', compact('comments', 'post'));
     }
 }

@@ -41,7 +41,7 @@
                 <p>Get Expert Legal Advice Within a Few Hours.</p>
                 </div>
                 <div class="col-md-4 col-sm-4 welcome-box text-center"> <img src="{{ url('frontend') }}/images/icon3.png" alt="">
-                <a href="#"><h4>Legal Study</h4></a>
+                <a href="{{ url('/blogs') }}"><h4>Legal Study</h4></a>
                 <p>Get Expert Legal Services on Phone Right Now.</p>
                 </div>
             </div>
