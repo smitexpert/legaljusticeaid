@@ -11,6 +11,7 @@
 |
 */
 
+use App\Site;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomePageController@index');
@@ -19,6 +20,10 @@ Route::get('/logout', function () {
     abort(403);
 });
 
+view()->composer('*', function ($view) {
+  $siteOptions = Site::where('slug', 'mysite')->limit(1)->first();
+  $view->with('SiteOptions', $siteOptions);
+});
 
 Route::get("/admin/dashboard", "AdminController@index");
 Route::get("/dashboard", "AdminController@index");
@@ -112,6 +117,14 @@ Route::group(['middleware' => 'moderatorRoute'], function(){
   Route::get('/admin/ratings/disapprove/{id}', 'ModerationController@disapprove');
 
   Route::get('/admin/moderations/questions', 'QuestionsModerationController@index');
+  Route::get('/admin/moderations/questions/disapprove/{id}', 'QuestionsModerationController@disapprove');
+  Route::get('/admin/moderations/questions/approve/{id}', 'QuestionsModerationController@approve');
+  Route::get('/admin/moderations/questions/remove/{id}', 'QuestionsModerationController@remove');
+  Route::get('/admin/moderations/questions/restore/{id}', 'QuestionsModerationController@restore');
+  Route::get('/admin/moderations/questions/delete/{id}', 'QuestionsModerationController@delete');
+  Route::get('/admin/moderations/questions/trush', 'QuestionsModerationController@trush');
+  Route::get('/admin/moderations/questions/view/{id}', 'QuestionsModerationController@view');
+  
   Route::get('/admin/moderations/answers', 'QuestionsModerationController@answers');
   
   Route::get('/admin/moderations/comments', 'CommentController@index');
@@ -153,4 +166,3 @@ Route::post('/advice/mark/{slug}', 'AdviceAddController@markAnswer');
 
 
 
-?>

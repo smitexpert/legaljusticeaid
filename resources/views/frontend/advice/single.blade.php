@@ -27,6 +27,7 @@
             
             @if(Auth::user())
             
+            @if ($advice->is_answerd == false)
                 @if ($advice->answers->where('user_id', Auth::user()->id)->count() == 0)
                     <li>
                         <form action="{{ url('/advice/') }}/{{ $advice->slug }}" method="POST">
@@ -45,23 +46,37 @@
                         </form>
                     </li>
                 @endif
-            
+            @endif
+                
             @endif
 
 
             @forelse ($advice->answers as $answer)
-                <li>
-                    @if ($advice->user_id == Auth::user()->id)
-                        <form action="{{ url('/advice') }}/mark/{{ $advice->slug }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="markid" value="{{ $answer->id }}">
-                            <button title="Mark as Wright Answer" class="btn-check" type="submit"><span class="fa fa-check"></span></button>
-                        </form>
-                    @endif
+
+            
+                <li @if ($answer->is_best == true) style="border: 1px solid green;" @endif>
+                    
                     {!! $answer->answer !!}
                     <p class="text-right">
                         <i>{{ $answer->user()->first()->name }}</i>
                     </p>
+                    @if($answer->is_best == true)
+                        <label style="color: green;">Best Answer</label>
+                    @endif
+                    @if ($advice->is_answerd == false)
+                        @if (Auth::user())
+                            @if ($advice->user_id == Auth::user()->id)
+                                <form action="{{ url('/advice') }}/mark/{{ $advice->slug }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="markid" value="{{ $answer->id }}">
+                                    <input type="hidden" name="adviceid" value="{{ $advice->id }}">
+                                    <button id="markbutton{{ $answer->id }}" title="Mark as Best Answer" class="btn-check" type="submit"><span class="fa fa-check"></span></button>
+                                    <label for="markbutton{{ $answer->id }}">Mark as Best Answer</label>
+                                </form>
+                            @endif
+                        @endif
+                    @endif
+                    
                 </li>
             @empty
                 <li>

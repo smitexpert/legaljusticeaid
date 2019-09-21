@@ -79,6 +79,14 @@ class AdviceAddController extends Controller
     }
 
     public function markAnswer(Request $request, $slug){
-        return $request->all();
+        Advice::findOrFail($request->adviceid)->update([
+            'is_answerd' => true
+        ]);
+
+        AdviceAnswer::findOrFail($request->markid)->update([
+            'is_best' => true
+        ]);
+
+        return back();
     }
 }

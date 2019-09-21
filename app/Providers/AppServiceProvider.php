@@ -29,13 +29,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $courts = Court::limit(5)->get();
-        View::share('LawyerCourtsLink', $courts);
-        $specialization = Specialization::limit(5)->get();
-        View::share('LawyerSpecializationsLink', $specialization);
-        $practiceAreas = PracticeArea::limit(5)->get();
-        View::share('LawyerPracticeAreasLink', $practiceAreas);
-        $siteOptions = Site::where('slug', 'mysite')->limit(1)->first();
-        View::share('SiteOptions', $siteOptions);
+        // $courts = Court::limit(5)->get();
+        // View::share('LawyerCourtsLink', $courts);
+        // $specialization = Specialization::limit(5)->get();
+        // View::share('LawyerSpecializationsLink', $specialization);
+        // $practiceAreas = PracticeArea::limit(5)->get();
+        // View::share('LawyerPracticeAreasLink', $practiceAreas);
     }
 }

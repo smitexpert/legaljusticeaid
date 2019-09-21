@@ -1,13 +1,8 @@
 @extends('backend.layouts.app')
 @section('topbutton')
 <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-success" href="{{ url('/admin/moderations/questions/approval') }}">
-        <i class="mdi mdi-magnify"></i> Approval
-    </a>
-</li>
-<li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-warning" href="{{ url('/admin/moderations/questions/trush') }}">
-        <i class="mdi mdi-magnify"></i> Trush
+    <a class="btn btn-sm btn-success" href="{{ url('/admin/moderations/questions') }}">
+        <i class="mdi mdi-arrow-left"></i> Back
     </a>
 </li>
 @endsection
@@ -50,13 +45,8 @@
                                             <td>{{ $question->is_answerd }}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="{{ url('/admin/moderations/questions/remove') }}/{{ $question->id }}" class="btn btn-danger btn-sm">Remove</a>
-                                                    <a href="{{ url('/admin/moderations/questions/view') }}/{{ $question->id }}" class="btn btn-primary btn-sm">View</a>
-                                                    @if($question->status == true)
-                                                        <a href="{{ url('/admin/moderations/questions/disapprove') }}/{{ $question->id }}" class="btn btn-warning btn-sm">Disapprove</a>
-                                                    @else
-                                                        <a href="{{ url('/admin/moderations/questions/approve') }}/{{ $question->id }}" class="btn btn-success btn-sm">Approve</a>
-                                                    @endif
+                                                    <a href="{{ url('/admin/moderations/questions/restore') }}/{{ $question->id }}" class="btn btn-success btn-sm">Restore</a>
+                                                    <a href="{{ url('/admin/moderations/questions/delete') }}/{{ $question->id }}" class="btn btn-danger btn-sm">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>

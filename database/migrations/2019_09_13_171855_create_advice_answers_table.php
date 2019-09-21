@@ -23,6 +23,7 @@ class CreateAdviceAnswersTable extends Migration
             $table->foreign('advice_id')->references('id')->on('advices')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

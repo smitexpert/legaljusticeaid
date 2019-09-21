@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Advice extends Model
 {
     //
+    use SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -28,7 +30,11 @@ class Advice extends Model
     }
 
     public function answers(){
-        return $this->hasMany('App\AdviceAnswer', 'advice_id', 'id');
+        return $this->hasMany('App\AdviceAnswer', 'advice_id', 'id')->orderBy('is_best', 'DESC');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
 }

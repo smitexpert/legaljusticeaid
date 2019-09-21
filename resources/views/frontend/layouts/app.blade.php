@@ -181,7 +181,7 @@
       <div class="col-md-3 col-sm-6">
         <div class="footer-heading">Practice Areas</div>
         <ul class="footer-nav">
-          @foreach ($LawyerPracticeAreasLink as $item)
+          @foreach (App\PracticeArea::limit(5)->get() as $item)
             <li><a href="{{ url("lawyers/practice-areas") }}/{{ $item->slug }}">{{ $item->name }}</a></li>
           @endforeach
           
@@ -190,7 +190,7 @@
       <div class="col-md-3 col-sm-6">
         <div class="footer-heading">Courts</div>
         <ul class="footer-nav">
-            @foreach ($LawyerCourtsLink as $item)
+            @foreach (App\Court::limit(5)->get() as $item)
               <li><a href="{{ url("lawyers/courts") }}/{{ $item->slug }}">{{ $item->name }}</a></li>
             @endforeach
         </ul>
