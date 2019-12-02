@@ -58,14 +58,14 @@ class LegalBlogController extends Controller
         }
 
         BlogPost::findOrFail($post_id)->update([
-            'slug' => Str::slug($request->title.' '.$post_id, '-')
+            'slug' => Slug::slug($request->title)
         ]);
 
         for($i=0; $i<count($request->tags); $i++){
             $tags[] = [
                 'post_id' => $post_id,
                 'tag' => $request->tags[$i],
-                'slug' => Str::slug($request->tags[$i], '-'),
+                'slug' => Slug::slug($request->tags[$i]),
                 'created_at' => Carbon::now()
             ];
         }
@@ -140,7 +140,7 @@ class LegalBlogController extends Controller
             $tags[] = [
                 'post_id' => $post_id,
                 'tag' => $request->tags[$i],
-                'slug' => Str::slug($request->tags[$i], '-'),
+                'slug' => Slug::slug($request->tags[$i]),
                 'created_at' => Carbon::now()
             ];
         }
@@ -166,7 +166,7 @@ class LegalBlogController extends Controller
 
         BlogCategory::insert([
             'name' => $request->category,
-            'slug' => Str::slug($request->category, '-'),
+            'slug' => Slug::slug($request->category),
             'created_at' => Carbon::now()
         ]);
         
@@ -206,7 +206,7 @@ class LegalBlogController extends Controller
 
         BlogCategory::findOrFail($id)->update([
             'name' => $request->category,
-            'slug' => Str::slug($request->category, '-')
+            'slug' => Slug::slug($request->category, '-')
         ]);
 
         return back()->with('status', 'Category Updated Successfully!');
