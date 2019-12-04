@@ -16,8 +16,8 @@ class CreateBlogPostTagsTable extends Migration
         Schema::create('blog_post_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('post_id');
-            $table->string('tag');
-            $table->string('slug')->nullable();
+            $table->string('tag', 100);
+            $table->string('slug', 100)->nullable();
             $table->foreign('post_id')->references('id')->on('blog_posts')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

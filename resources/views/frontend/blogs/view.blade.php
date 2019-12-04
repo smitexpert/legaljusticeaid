@@ -16,7 +16,7 @@
                 <div class="col-md-7 col-sm-8">
                 <div class="post-header">
                     <h4><a href="/blogs/{{ $post->slug }}">{{ $post->title }}</a></h4>
-                    <div class="postmeta">By : <span>{{ $post->user()->first()->name }} </span> Category : <a href="#">{{ $post->category()->first()->name }}</a></div>
+                    <div class="postmeta">By : <span>{{ $post->user()->first()->name }} </span></div>
                 </div>
                 <p>{{ str_limit(strip_tags($post->article), 100, '...') }}</p>
                 <div class="readmore"><a href="/blogs/{{ $post->slug }}">Read More</a></div>

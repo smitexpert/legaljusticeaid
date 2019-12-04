@@ -164,5 +164,3 @@ Route::get('/advice/{slug}', 'AdviceViewController@single');
 Route::post('/advice/{slug}', 'AdviceAddController@addAdvice');
 Route::post('/advice/mark/{slug}', 'AdviceAddController@markAnswer');
 
-Route::get('/unicode', 'Unicode@index');
-

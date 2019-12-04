@@ -30,7 +30,7 @@ class PracticeAreaController extends Controller
 
         PracticeArea::insert([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => Slug::slug($request->name, '-'),
             'created_at' => Carbon::now(),
         ]);
 
@@ -69,7 +69,7 @@ class PracticeAreaController extends Controller
 
         PracticeArea::findOrFail($request->id)->update([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => Slug::slug($request->name, '-'),
         ]);
 
         return back()->with('status', 'Practice Area Updated');

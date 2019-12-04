@@ -30,7 +30,7 @@ class SpecializationController extends Controller
 
         Specialization::insert([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => Slug::slug($request->name, '-'),
             'created_at' => Carbon::now(),
         ]);
 
@@ -70,7 +70,7 @@ class SpecializationController extends Controller
 
         Specialization::findOrFail($request->id)->update([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => Slug::slug($request->name, '-'),
         ]);
 
         return back()->with('status', 'Specialization Updated!');

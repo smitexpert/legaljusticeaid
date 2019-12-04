@@ -15,7 +15,7 @@ class CreateAdvicesTable extends Migration
     {
         Schema::create('advices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title', 100);
             $table->string('slug', 100)->nullable();
             $table->text('details');
             $table->boolean('is_answerd')->default(false);

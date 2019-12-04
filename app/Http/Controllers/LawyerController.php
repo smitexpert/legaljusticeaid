@@ -40,7 +40,7 @@ class LawyerController extends Controller
 
         $lastId = Lawyer::insertGetId([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => Slug::slug($request->name, '-'),
             'email' => $request->email,
             'phone' => $request->phone,
             'location' => $request->location,
@@ -51,7 +51,7 @@ class LawyerController extends Controller
         ]);
 
         Lawyer::findOrFail($lastId)->update([
-            'slug' => Str::slug($request->name." ".$lastId, '-'),
+            'slug' => Slug::slug($request->name." ".$lastId, '-'),
         ]);
 
         if($request->hasFile('picture')){
@@ -157,7 +157,7 @@ class LawyerController extends Controller
 
         Lawyer::findOrFail($id)->update([
             'name' => $request->name,
-            'slug' => Str::slug($request->name." ".$id, '-'),
+            'slug' => Slug::slug($request->name." ".$id, '-'),
             'email' => $request->email,
             'phone' => $request->phone,
             'location' => $request->location,

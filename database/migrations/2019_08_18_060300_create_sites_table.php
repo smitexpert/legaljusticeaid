@@ -18,9 +18,9 @@ class CreateSitesTable extends Migration
             $table->string('slug', 30)->default('mysite');
             $table->string('name', 30);
             $table->string('phone', 30);
-            $table->string('email', 30);
-            $table->string('address');
-            $table->string('description');
+            $table->string('email', 64);
+            $table->string('address', 100);
+            $table->string('description', 255);
             $table->string('logo')->default('default-logo.jpg');
             $table->string('footer_logo')->default('default-footer-logo.jpg');
             $table->timestamps();

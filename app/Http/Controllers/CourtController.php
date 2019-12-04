@@ -27,7 +27,7 @@ class CourtController extends Controller
 
         Court::insert([
             'name' => $request->courts,
-            'slug' => Str::slug($request->courts, '-'),
+            'slug' => Slug::slug($request->courts, '-'),
             'created_at' => Carbon::now(),
         ]);
 
@@ -62,7 +62,7 @@ class CourtController extends Controller
 
         Court::findOrFail($request->id)->update([
             'name' => $request->courts,
-            'slug' => Str::slug($request->courts, '-'),
+            'slug' => Slug::slug($request->courts, '-'),
         ]);
 
         return back()->with('status', 'Name Update Successfully!');

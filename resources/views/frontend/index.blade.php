@@ -66,30 +66,34 @@
                 <li class="col-md-4 col-sm-6">
                     <div class="col">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="lawyer-image"><img src="{{ asset("uploaded/lawyer_images") }}/{{ $lawyer->picture }}" alt=""></div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <div class="head"><a href="{{ url("lawyers") }}/{{ $lawyer->slug }}">{{ $lawyer->name }}</a></div>
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-12">
                                         <ul class="experts">
                                             {!! LawyerRating($lawyer->id) !!}
                                         </ul>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-12">
                                         <div class="date">{{ $lawyer->experience }} Yrs Experience</div>
                                     </div>
                                 </div>
-                                <p>
-                                    @forelse ($lawyer->practiceAreas as $practiceArea)
-                                        @if($loop->index < 1)
-                                            {{ $practiceArea->name }} +more
-                                        @endif
-                                    @empty
-                                        Nothing to be show...
-                                    @endforelse
-                                </p>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>
+                                            @forelse ($lawyer->practiceAreas as $practiceArea)
+                                                @if($loop->index < 1)
+                                                    {{ $practiceArea->name }} +more
+                                                @endif
+                                            @empty
+                                                Nothing to be show...
+                                            @endforelse
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             <br>
                         </div>

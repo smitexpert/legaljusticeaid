@@ -15,11 +15,11 @@ class CreateLawyersTable extends Migration
     {
         Schema::create('lawyers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('location');
+            $table->string('name', 100);
+            $table->string('slug', 100);
+            $table->string('email', 100);
+            $table->string('phone', 100);
+            $table->string('location', 100);
             $table->float('experience', 10, 2);
             $table->longText('description');
             $table->string('gender', 10);
