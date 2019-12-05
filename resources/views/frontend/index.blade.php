@@ -198,74 +198,22 @@
     <div class="practice-wrap">
         <div class="container">
         <div class="headingTitle">
-            <h1>PRACTICE <span>Area</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis leo eget maximus volutpat. Nulla eget bibendum urna, et vehicula ante. Donec et diam sodales, pellentesque est a, posuere ex. Curabitur mattis viverra semper.</p>
+            <h1>Latest <span>Blog</span></h1>
+            {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis leo eget maximus volutpat. Nulla eget bibendum urna, et vehicula ante. Donec et diam sodales, pellentesque est a, posuere ex. Curabitur mattis viverra semper.</p> --}}
         </div>
         <ul class="row">
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/personal-injury.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Personal Injury</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/car-accident.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Car Accident</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/legal-malpractice.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Legal Malpractice</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/negligence.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Negligence</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/construction.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Construction Matters</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/fraud.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Fraud</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/civil-litigation.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Civil Litigation</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="practiceImg"><img src="{{ url('frontend') }}/images/bp-oil.jpg" alt=""></div>
-            <div class="pracInfo">
-                <h3><a href="#">Money Laundering</a></h3>
-                <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p>
-                <div class="readmore"><a href="aboutus.html">Read More</a></div>
-            </div>
-            </li>
+            @forelse ($posts as $post)
+                <li class="col-md-3 col-sm-6">
+                    <div class="practiceImg"><img src="{{ asset("/uploaded/post_thumb/") }}/{{ $post->cover }}" alt="{{ $post->title }}"></div>
+                    <div class="pracInfo">
+                        <h3><a href="blogs/{{ $post->slug }}">{{ $post->title }}</a></h3>
+                        {{-- <p>Lorem ipsum dolor sit amet, adipiscing elit quisque...</p> --}}
+                        <div class="readmore"><a href="blogs/{{ $post->slug }}">Read More</a></div>
+                    </div>
+                </li>
+            @empty
+                No Post Found
+            @endforelse
         </ul>
         </div>
     </div>

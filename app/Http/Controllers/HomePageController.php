@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BlogPost;
 use App\Lawyer;
 use App\LawyerRating;
 use App\Ratings;
@@ -48,6 +49,7 @@ class HomePageController extends Controller
 
     public function index(){
         $lawyers = Lawyer::orderBy('experience', 'desc')->limit(6)->get();
-        return view("frontend.index", compact('lawyers'));
+        $posts = BlogPost::orderBy('id', 'desc')->limit(8)->get();
+        return view("frontend.index", compact('lawyers', 'posts'));
     }
 }

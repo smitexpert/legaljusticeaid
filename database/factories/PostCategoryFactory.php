@@ -9,6 +9,6 @@ use Faker\Generator as Faker;
 $factory->define(BlogPostCategory::class, function (Faker $faker) {
     return [
         'cateogry_id' => random_int(1, 20),
-        'post_id' => random_int(1, 50)
+        'post_id' => $faker->unique()->numberBetween(1, 90)
     ];
 });

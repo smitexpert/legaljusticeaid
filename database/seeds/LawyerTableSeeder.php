@@ -1,9 +1,9 @@
 <?php
 
-use App\BlogPostCategory;
+use App\Lawyer;
 use Illuminate\Database\Seeder;
 
-class PostCategorySeeder extends Seeder
+class LawyerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class PostCategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(BlogPostCategory::class, 90)->create();
+        factory(Lawyer::class, 90)->create();
     }
 }
