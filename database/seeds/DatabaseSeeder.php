@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PostTableSeeder::class);
         $this->call(PostCategorySeeder::class);
         $this->call(LawyerTableSeeder::class);
+        $this->call(CourtTableSeeder::class);
+        $this->call(SpecializationTableSeeder::class);
+        $this->call(PracticeAreaTableSeeder::class);
     }
 }

@@ -49,7 +49,7 @@ class AdviceAddController extends Controller
         }
 
         Advice::findOrFail($advice_id)->update([
-            'slug' => Slug::slug($request->title, '-')."-".$advice_id
+            'slug' => $advice_id
         ]);
 
         AdviceCategory::insert([
