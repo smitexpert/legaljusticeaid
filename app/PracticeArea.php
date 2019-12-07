@@ -24,4 +24,15 @@ class PracticeArea extends Model
             'lawyers_id'
         );
     }
+
+    public function advices(){
+        return $this->hasManyThrough(
+            'App\Advice',
+            'App\AdviceCategory',
+            'practicearea_id',
+            'id',
+            'id',
+            'advice_id'
+        );
+    }
 }

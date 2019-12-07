@@ -162,6 +162,9 @@ Route::get('/new/advices', 'AdviceAddController@index');
 Route::post('/new/advices', 'AdviceAddController@addNew');
 
 Route::get('/advice/{slug}', 'AdviceViewController@single');
-Route::post('/advice/{slug}', 'AdviceAddController@addAdvice');
+Route::post('/advice/{id}', 'AdviceAddController@addAdvice');
 Route::post('/advice/mark/{slug}', 'AdviceAddController@markAnswer');
 
+Route::prefix('/advice/category')->group(function(){
+  Route::get('/{slug}', 'AdviceCategoryController@index');
+});

@@ -12,6 +12,6 @@ class PracticeAreaTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(PracticeArea::class, 60)->create();
+        factory(PracticeArea::class, 20)->create();
     }
 }

@@ -1,5 +1,5 @@
 @extends("frontend.layouts.advice")
-@section('title', 'Legal Study Blog')
+@section('title', 'Category: '.$categoryName.' - Legal Study Blog')
 @section('contents')  
 <div class="col-md-8"> 
     <!-- Blog List start -->
@@ -24,14 +24,14 @@
                 </div>
                 <p>{{ str_limit(strip_tags($advice->details), 100, '...') }}</p>
                 <div class="row">
-                  <div class="col-xs-6">
-                    <h4 class="text-primary">Response <span class="badge">{{ App\AdviceAnswer::where('advice_id', $advice->id)->count() }}</span></h4>
-                  </div>
-                  <div class="col-xs-6">
-                      <div class="readmore text-right">
-                        <a href="{{ url('/advice') }}/{{ $advice->id }}">Read More</a></div>
-                      </div>
-                  </div>
+                    <div class="col-xs-6">
+                      <h4 class="text-primary">Response <span class="badge">{{ App\AdviceAnswer::where('advice_id', $advice->id)->count() }}</span></h4>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="readmore text-right">
+                          <a href="{{ url('/advice') }}/{{ $advice->id }}">Read More</a></div>
+                        </div>
+                    </div>
                 </div>
               </div>
             </li>

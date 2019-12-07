@@ -30,7 +30,7 @@
             @if ($advice->is_answerd == false)
                 @if ($advice->answers->where('user_id', Auth::user()->id)->count() == 0)
                     <li>
-                        <form action="{{ url('/advice/') }}/{{ $advice->slug }}" method="POST">
+                        <form action="{{ url('/advice/') }}/{{ $advice->id }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -66,7 +66,7 @@
                     @if ($advice->is_answerd == false)
                         @if (Auth::user())
                             @if ($advice->user_id == Auth::user()->id)
-                                <form action="{{ url('/advice') }}/mark/{{ $advice->slug }}" method="POST">
+                                <form action="{{ url('/advice') }}/mark/{{ $advice->id }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="markid" value="{{ $answer->id }}">
                                     <input type="hidden" name="adviceid" value="{{ $advice->id }}">

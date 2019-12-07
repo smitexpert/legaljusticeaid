@@ -61,15 +61,15 @@ class AdviceAddController extends Controller
         return back()->with('status', 'Your Request is pending for publish!');
     }
 
-    public function addAdvice(Request $request, $slug){
+    public function addAdvice(Request $request, $id){
         $request->validate([
             'answer' => 'required'
         ]);
 
-        $advice_id = Advice::where('slug', $slug)->firstOrFail()->id;
+        // $advice_id = Advice::where('id', $id)->firstOrFail()->id;
 
         AdviceAnswer::insert([
-            'advice_id' => $advice_id,
+            'advice_id' => $id,
             'user_id' => Auth::user()->id,
             'answer' => $request->answer,
             'created_at' => Carbon::now()
