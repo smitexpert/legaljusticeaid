@@ -12,7 +12,6 @@ class Advice extends Model
 
     protected $fillable = [
         'title',
-        'slug',
         'details',
         'is_answerd',
         'status'

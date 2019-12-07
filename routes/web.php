@@ -28,6 +28,7 @@ view()->composer('*', function ($view) {
 Route::get("/admin/dashboard", "AdminController@index");
 Route::get("/dashboard", "AdminController@index");
 Route::get("/admin", "AdminController@index");
+Route::get('/me', "UserDashboardController@index");
 
 Route::group(['middleware' => 'adminRoute'], function(){
   Route::get("/admin/user", "UserController@index");

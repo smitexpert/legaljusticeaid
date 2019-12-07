@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -14,7 +15,12 @@ class AdminController extends Controller
     }
 
     function index(){
-      return view('backend.dashboard');
+      if(Auth::user()->user_role <= 4){
+        return view('backend.dashboard');
+      }else{
+        return view('me.index');
+      }
+      
     }
 
 }

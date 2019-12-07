@@ -15,7 +15,7 @@ class AdviceViewController extends Controller
     }
 
     public function single($slug){
-        $advice = Advice::with('answers')->where('slug', $slug)->firstOrFail();
+        $advice = Advice::with('answers')->where('id', $slug)->firstOrFail();
         return view('frontend.advice.single', compact('advice'));
     }
 }

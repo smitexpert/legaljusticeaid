@@ -19,11 +19,11 @@
             <div class="row">
                 <div class="col-md-12">
                 <div class="post-header">
-                    <h4><a @if($advice->is_answerd == 1)style="color: green;"@endif href="{{ url('/advice') }}/{{ $advice->slug }}">{{ $advice->title }}</a></h4>
+                    <h4><a @if($advice->is_answerd == 1)style="color: green;"@endif href="{{ url('/advice') }}/{{ $advice->id }}">{{ $advice->title }}</a></h4>
                     <div class="postmeta">From : <a href="{{ url('/advice') }}/category/{{ $advice->category()->first()->slug }}">{{ $advice->category()->first()->name }}</a></div>
                 </div>
                 <p>{{ str_limit(strip_tags($advice->details), 100, '...') }}</p>
-                <div class="readmore text-right"><a href="{{ url('/advice') }}/{{ $advice->slug }}">Read More</a></div>
+                <div class="readmore text-right"><a href="{{ url('/advice') }}/{{ $advice->id }}">Read More</a></div>
                 </div>
               </div>
             </li>
