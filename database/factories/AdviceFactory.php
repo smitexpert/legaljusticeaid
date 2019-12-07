@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Advice::class, function (Faker $faker) {
     return [
-        'title' => $faker->title,
+        'title' => $faker->realText(30),
         'details' => $faker->realText(),
         'status' => 1,
         'user_id' => random_int(1, 10)

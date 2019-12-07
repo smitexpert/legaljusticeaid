@@ -196,7 +196,7 @@
 <script src="{{ url('frontend') }}/rs-plugin/js/jquery.themepunch.tools.min.js"></script> 
 <script src="{{ url('frontend') }}/rs-plugin/js/jquery.themepunch.revolution.min.js"></script> 
 <!-- general script file --> 
-<script src="{{ url('frontend') }}/js/script.js"></script> 
+{{-- <script src="{{ url('frontend') }}/js/script.js"></script>  --}}
 
  @stack('scripts')
 

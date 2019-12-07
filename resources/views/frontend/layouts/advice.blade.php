@@ -28,7 +28,7 @@
                 <h5 class="widget-title">Adivce Categories</h5>
                 <ul class="categories">
                     @foreach (App\PracticeArea::all() as $advice)
-                        <li><a href="{{ url('/blogs/category') }}/{{ $advice->slug }}"> {{ $advice->name }} (00)</a></li>
+                        <li><a href="{{ url('/advice/category') }}/{{ $advice->slug }}"> {{ $advice->name }} ({{ App\AdviceCategory::where('practicearea_id', $advice->id)->count() }})</a></li>
                     @endforeach
                 </ul>
             </div>

@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SpecializationTableSeeder::class);
         $this->call(PracticeAreaTableSeeder::class);
         $this->call(AdviceTableSeeder::class);
+        // $this->call(AdviceCategorySeeder::class);
     }
 }

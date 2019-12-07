@@ -15,6 +15,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="listWrpService">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="#" class="btn btn-default">Button</a>
+                                <a href="#" class="btn btn-success">Button</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
