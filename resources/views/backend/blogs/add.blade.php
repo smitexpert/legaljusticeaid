@@ -16,6 +16,7 @@
      padding: 2px;
  }
 </style>
+@endpush
 @section('topbutton')
 <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
     <a class="btn btn-sm btn-success" href="{{ url('/admin/blogs') }}">

@@ -134,8 +134,8 @@
           <div class="headingTitle">
             <h1>Contact <span>Us</span></h1>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque bibendum vestibulum leo vel tempus. Vivamus sit amet felis ac est pharetra dapibus ut ac turpis. Vivamus quis rhoncus nisi. In elit dolor, semper vel dapibus ut, consectetur non massa. Phasellus ut sem ligula.</p>
-          <h4>Contact Information</h4>
+          {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque bibendum vestibulum leo vel tempus. Vivamus sit amet felis ac est pharetra dapibus ut ac turpis. Vivamus quis rhoncus nisi. In elit dolor, semper vel dapibus ut, consectetur non massa. Phasellus ut sem ligula.</p> --}}
+          {{-- <h4>Contact Information</h4> --}}
           <div class="address">@if($SiteOptions != null)<span>{{ $SiteOptions->address }}</span>@else{{ 'Please Add Address' }}@endif</div>
           <div class="phone">@if($SiteOptions != null)<span>{{ $SiteOptions->phone }}</span>@else{{ 'Please Add Phone' }}@endif</div>
           <div class="appointment"><a href="appointment.html">Make A Appointment</a></div>

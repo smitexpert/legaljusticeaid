@@ -87,7 +87,12 @@ Route::group(['middleware' => 'managerRoute'], function () {
 
 });
 
+
 Route::group(['middleware' => 'authorRoute'], function(){
+  Route::prefix('/admin/services')->namespace('Backend')->group(function(){
+    Route::get('/', 'LegalServiceController@index');
+    Route::get('/new', 'LegalServiceController@addNew');
+  });
   Route::get('/admin/blogs', 'LegalBlogController@index');
   Route::get('/admin/add/blogs', 'LegalBlogController@add');
   Route::get('/admin/blogs/categories', 'LegalBlogController@categories');
