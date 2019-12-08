@@ -55,8 +55,4 @@ class QuestionsModerationController extends Controller
         $question = Advice::findOrFail($id);
         return view('backend.moderations.questions.view', compact('question'));;
     }
-
-    public function answers(){
-        return view('backend.moderations.answers');
-    }
 }

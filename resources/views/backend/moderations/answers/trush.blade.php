@@ -1,13 +1,8 @@
 @extends('backend.layouts.app')
 @section('topbutton')
 <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-success" href="{{ url('/admin/moderations/answers/approval') }}">
-        <i class="mdi mdi-magnify"></i> Approval
-    </a>
-</li>
-<li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-warning" href="{{ url('/admin/moderations/answers/trush') }}">
-        <i class="mdi mdi-magnify"></i> Trush
+    <a class="btn btn-sm btn-success" href="{{ url('/admin/moderations/answers') }}">
+        <i class="mdi mdi-arrow-left"></i> Back
     </a>
 </li>
 @endsection
@@ -48,8 +43,8 @@
                                             <td>{{ $answer->user->name }}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="{{ route('admin.answer.remove', ['id' => $answer->id]) }}" class="btn btn-danger btn-sm">Remove</a>
-                                                    <a target="_blank" href="{{ route('advice.single', ['slug' => $answer->question->id]) }}#advice_answer_{{ $answer->id }}" class="btn btn-info btn-sm"><span class="fa fa-search"></span></a>
+                                                    <a href="{{ route('admin.answer.restore', ['id' => $answer->id]) }}" class="btn btn-success btn-sm">Restore</a>
+                                                    <a target="_blank" href="{{ route('advice.single', ['slug' => $answer->question->id]) }}" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a>
                                                 </div>
                                             </td>
                                         </tr>

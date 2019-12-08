@@ -126,7 +126,10 @@ Route::group(['middleware' => 'moderatorRoute'], function(){
   Route::get('/admin/moderations/questions/trush', 'QuestionsModerationController@trush');
   Route::get('/admin/moderations/questions/view/{id}', 'QuestionsModerationController@view');
   
-  Route::get('/admin/moderations/answers', 'QuestionsModerationController@answers');
+  Route::get('/admin/moderations/answers', 'AnswerModerationController@index');
+  Route::get('/admin/moderations/answers/remove/{id}', 'AnswerModerationController@remove')->name('admin.answer.remove');
+  Route::get('/admin/moderations/answers/restore/{id}', 'AnswerModerationController@restore')->name('admin.answer.restore');
+  Route::get('/admin/moderations/answers/trush/', 'AnswerModerationController@trush');
   
   Route::get('/admin/moderations/comments', 'CommentController@index');
   Route::get('/admin/moderations/comments/approve/{id}', 'CommentController@approve');
@@ -161,7 +164,7 @@ Route::get('/advices', 'AdviceViewController@index');
 Route::get('/new/advices', 'AdviceAddController@index');
 Route::post('/new/advices', 'AdviceAddController@addNew');
 
-Route::get('/advice/{slug}', 'AdviceViewController@single');
+Route::get('/advice/{slug}', 'AdviceViewController@single')->name('advice.single');
 Route::post('/advice/{id}', 'AdviceAddController@addAdvice');
 Route::post('/advice/mark/{slug}', 'AdviceAddController@markAnswer');
 

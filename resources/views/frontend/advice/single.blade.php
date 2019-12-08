@@ -54,7 +54,7 @@
             @forelse ($advice->answers as $answer)
 
             
-                <li @if ($answer->is_best == true) style="border: 1px solid green;" @endif>
+                <li id="advice_answer_{{ $answer->id }}" @if ($answer->is_best == true) style="border: 1px solid green;" @endif>
                     
                     {!! $answer->answer !!}
                     <p class="text-right">
