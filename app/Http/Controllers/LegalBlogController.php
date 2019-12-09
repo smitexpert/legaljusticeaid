@@ -57,8 +57,11 @@ class LegalBlogController extends Controller
             ]);
         }
 
+        // $slug = mb_strtolower($request->title);
+        $slug = $request->title;
+
         BlogPost::findOrFail($post_id)->update([
-            'slug' => Slug::slug($request->title)
+            'slug' => Slug::slug($slug)
         ]);
 
         for($i=0; $i<count($request->tags); $i++){

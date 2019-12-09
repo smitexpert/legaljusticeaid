@@ -6,8 +6,8 @@
     </a>
 </li>
 <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
-    <a class="btn btn-sm btn-warning" href="{{ url('/admin/services/trash') }}">
-        <i class="mdi mdi-magnify"></i> Trash
+    <a class="btn btn-sm btn-success" href="{{ url('/admin/services') }}">
+        <i class="mdi mdi-arrow-left"></i> Back
     </a>
 </li>
 @endsection
@@ -28,7 +28,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4>Service List</h4>
+                    <h4>Service Trash List</h4>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table">
@@ -48,12 +48,12 @@
                                             <td>{{ $service->created_at }}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <form action="{{ url('/') }}/admin/services/{{ $service->id }}" onsubmit="return confirm('Are You Sure?')" method="POST">
+                                                    <form action="{{ url('/') }}/admin/services/trash/{{ $service->id }}" onsubmit="return confirm('Are You Sure?')" method="POST">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></button>
                                                     </form>
-                                                    <a href="{{ url('/') }}/admin/services/{{ $service->id }}/edit" class="btn btn-sm btn-info"><span class="fa fa-gear"></span></a>
+                                                    <a href="{{ url('/') }}/admin/services/trash/{{ $service->id }}/restore" class="btn btn-sm btn-success"><span class="fa fa-reply"></span></a>
                                                 </div>
                                             </td>
                                         </tr>

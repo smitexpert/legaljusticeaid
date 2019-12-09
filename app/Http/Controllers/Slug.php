@@ -9,13 +9,18 @@ class Slug {
         $str = @trim($string);
         $subst = $separator;
         $result = preg_replace($re, $subst, $str);
+        
+        $result = mb_strtolower($result);
         $result = str_replace("'", '', $result);
         $result = str_replace('"', '', $result);
         $result = str_replace('‘', '', $result);
         $result = str_replace('’', '', $result);
         $result = str_replace(',', '', $result);
         $result = str_replace('.', '', $result);
-        $result = strtolower($result);
+        $result = str_replace('?', '', $result);
+        $result = str_replace('!', '', $result);
+        $result = str_replace('@', '', $result);
+        // $result = str_replace('�ে', '', $result);
         
         return $result;
     }

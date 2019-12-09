@@ -55,9 +55,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group @error('title') has-danger @enderror">
                                             <label for="title">Title</label>
                                             <input id="title" name="title" value="{{ old('title') }}" type="text" class="form-control">
+                                            @error('title')
+                                                <label for="" class="error mt-2 text-danger">{{ $message }}</label>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +68,30 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="description">Description</label>
-                                            <textarea name="description" id="description" class="form-control"></textarea>
+                                            <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group  @error('tags') has-danger @enderror">
+                                            <label for="">Input Tags</label>
+                                            <input name="tags" id="tags" onkeydown="postTags(event)" type="text" class="form-control">
+                                            @error('tags')
+                                                <label for="" class="error mt-2 text-danger">{{ $message }}</label>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label for="">Tags:</label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-tags">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -91,8 +117,26 @@
 
         });
         
-         $(document).ready(function() {
-            $('.table').DataTable();
-        });
+    function postTags(event){
+        var tag = $(event.target).val();
+        var x = event.which || event.keyCode;
+        if((x==13) || (x==188)){
+            event.preventDefault();
+            $(".input-tags").append('<div class="tag">'+tag+' <i onclick="removeTags(event)" class="fa fa-close"></i><input type="hidden" name="tags[]" value="'+tag+'"></div>');
+            $(event.target).val("");
+        }
+    }
+
+    function removeTags(event){
+        $(event.target).closest('.tag').remove();
+    }
+
+    $("#tags").focusout(function(){
+        var tag = $(this).val();
+        if(tag != ""){
+            $(".input-tags").append('<div class="tag">'+tag+' <i onclick="removeTags(event)" class="fa fa-close"></i><input type="hidden" name="tags[]" value="'+tag+'"></div>');
+        }
+        $(this).val("");
+    })
     </script>
 @endpush
