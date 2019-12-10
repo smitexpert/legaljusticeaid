@@ -195,3 +195,7 @@ Route::post('/advice/mark/{slug}', 'AdviceAddController@markAnswer');
 Route::prefix('/advice/category')->group(function(){
   Route::get('/{slug}', 'AdviceCategoryController@index');
 });
+
+Route::prefix('/services')->namespace('Frontend')->group(function(){
+  Route::get('/', 'ServiceController@index');
+});

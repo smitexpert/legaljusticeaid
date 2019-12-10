@@ -12,6 +12,8 @@ class Slug {
         
         $result = mb_strtolower($result);
         $result = str_replace("'", '', $result);
+        $result = str_replace("/-", '', $result);
+        $result = str_replace("\\-", '', $result);
         $result = str_replace('"', '', $result);
         $result = str_replace('‘', '', $result);
         $result = str_replace('’', '', $result);

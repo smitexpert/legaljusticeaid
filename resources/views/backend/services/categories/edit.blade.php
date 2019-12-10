@@ -2,7 +2,7 @@
 @section('topbutton')
 <li class="nav-item  dropdown d-none align-items-center d-lg-flex d-none">
     <a class="btn btn-sm btn-success" href="{{ url('/admin/categories/services/') }}">
-        <i class="mdi mdi-arrow-left"></i> Trash
+        <i class="mdi mdi-arrow-left"></i> Back
     </a>
 </li>
 @endsection
