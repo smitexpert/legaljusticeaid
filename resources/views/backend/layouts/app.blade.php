@@ -170,6 +170,7 @@
                         <div class="collapse" id="post-area">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/services') }}">Legal Services</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/categories/services') }}">Service Categories</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/blogs') }}">Legal Blogs</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/blogs/categories') }}">Categories</a></li>
                             </ul>

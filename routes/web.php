@@ -100,6 +100,18 @@ Route::group(['middleware' => 'authorRoute'], function(){
     Route::delete('/trash/{id}', 'LegalServiceController@delete');
     Route::get('/trash/{id}/restore', 'LegalServiceController@restore');
   });
+
+  Route::prefix('/admin/categories/services')->namespace('Backend')->group(function(){
+    Route::get('/', 'ServiceCategoriesController@index');
+    Route::post('/', 'ServiceCategoriesController@store');
+    Route::get('/{id}/edit', 'ServiceCategoriesController@edit');
+    Route::put('/{id}/edit', 'ServiceCategoriesController@update');
+    Route::delete('/{id}', 'ServiceCategoriesController@remove');
+    Route::get('/trash', 'ServiceCategoriesController@trash');
+    Route::delete('/trash/{id}', 'ServiceCategoriesController@destory');
+    Route::get('/trash/{id}/restore', 'ServiceCategoriesController@restore');
+  });
+
   Route::get('/admin/blogs', 'LegalBlogController@index');
   Route::get('/admin/add/blogs', 'LegalBlogController@add');
   Route::get('/admin/blogs/categories', 'LegalBlogController@categories');

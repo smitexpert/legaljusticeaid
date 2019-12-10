@@ -23,4 +23,8 @@ class Service extends Model
     public function tags(){
         return $this->hasMany('App\ServiceTag', 'service_id', 'id');
     }
+
+    public function category(){
+        return $this->hasOne('App\ServicePostCategory', 'service_id', 'id');
+    }
 }

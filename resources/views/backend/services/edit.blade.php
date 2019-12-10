@@ -76,6 +76,20 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group  @error('tags') has-danger @enderror">
+                                            <label for="">Select Category</label>
+                                            <select name="category" id="category" class="form-control selectpicker" data-live-search="true">
+                                                <option value="">--</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}" @if(($category->id)==($service->category->service_categorie_id)) selected @endif>{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('category')
+                                                <label for="" class="error mt-2 text-danger">{{ $message }}</label>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group  @error('tags') has-danger @enderror">
                                             <label for="">Input Tags</label>
                                             <input name="tags" id="tags" onkeydown="postTags(event)" type="text" class="form-control">
                                             @error('tags')

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Slug;
 use App\Service;
+use App\ServiceCategory;
+use App\ServicePostCategory;
 use App\ServiceTag;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -23,13 +25,15 @@ class LegalServiceController extends Controller
     }
 
     public function addNew(){
-        return view('backend.services.add');
+        $categories = ServiceCategory::all();
+        return view('backend.services.add', compact('categories'));
     }
 
     public function store(Request $request){
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'category' => 'required',
             'tags' => 'required'
         ]);
 
@@ -43,6 +47,10 @@ class LegalServiceController extends Controller
             'created_at' => Carbon::now()
         ]);
 
+        Service::find($service_id)->update([
+            'slug' => $slug.'-'.$service_id
+        ]);
+
         foreach($request->tags as $tag){
             $tags[] = [
                 'service_id' => $service_id,
@@ -53,20 +61,26 @@ class LegalServiceController extends Controller
         }
         
         ServiceTag::insert($tags);
+        ServicePostCategory::create([
+            'service_id' => $service_id,
+            'service_categorie_id' => $request->category
+        ]);
 
         return back()->with('status', 'Service Was Successfully Published!');
     }
 
     public function edit($id){
         $service = Service::findOrFail($id);
-        // return $service->tags;
-        return view('backend.services.edit', compact('service'));
+        $categories = ServiceCategory::all();
+        // return $service->category;
+        return view('backend.services.edit', compact('service', 'categories'));
     }
 
     public function update(Request $request, $id){
         $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'category' => 'required',
             'tags' => 'required',
         ]);
 
@@ -75,7 +89,7 @@ class LegalServiceController extends Controller
         $slug = Slug::slug($request->title);
         Service::find($id)->update([
             'title' => $request->title,
-            'slug' => $slug,
+            'slug' => $slug.'-'.$id,
             'description' => $request->description,
             'user_id' => Auth::user()->id
         ]);
@@ -90,6 +104,9 @@ class LegalServiceController extends Controller
         }
         
         ServiceTag::insert($tags);
+        ServicePostCategory::where('service_id', $id)->update([
+            'service_categorie_id' => $request->category
+        ]);
 
         return back()->with('status', 'Service Was Successfully Updated!');
     }
