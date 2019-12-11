@@ -35,6 +35,7 @@
                                 <thead>
                                     <tr>
                                         <th>Title</th>
+                                        <th>Name</th>
                                         <th>Posted By</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -44,6 +45,7 @@
                                     @foreach ($services as $service)
                                         <tr>
                                             <td>{{ $service->title }}</td>
+                                            <td>{{ $service->name }}</td>
                                             <td>{{ $service->user->name }}</td>
                                             <td>{{ $service->created_at }}</td>
                                             <td>

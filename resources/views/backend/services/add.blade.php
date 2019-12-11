@@ -54,11 +54,20 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group @error('title') has-danger @enderror">
                                             <label for="title">Title</label>
                                             <input id="title" name="title" value="{{ old('title') }}" type="text" class="form-control">
                                             @error('title')
+                                                <label for="" class="error mt-2 text-danger">{{ $message }}</label>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group @error('name') has-danger @enderror">
+                                            <label for="name">Name</label>
+                                            <input id="name" name="name" value="{{ old('name') }}" type="text" class="form-control">
+                                            @error('name')
                                                 <label for="" class="error mt-2 text-danger">{{ $message }}</label>
                                             @enderror
                                         </div>

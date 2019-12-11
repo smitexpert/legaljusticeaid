@@ -25,6 +25,13 @@ class Service extends Model
     }
 
     public function category(){
-        return $this->hasOne('App\ServicePostCategory', 'service_id', 'id');
+        return $this->hasManyThrough(
+            'App\ServiceCategory',
+            'App\ServicePostCategory',
+            'service_id',
+            'id',
+            'id',
+            'service_categorie_id'
+        );
     }
 }

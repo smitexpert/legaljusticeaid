@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class BlogViewController extends Controller
 {
     public function index(){
-        $posts = BlogPost::orderBy('id', 'desc')->paginate(10);
+        $posts = BlogPost::with('category', 'user')->orderBy('id', 'desc')->paginate(10);
         return view('frontend.blogs.view', compact('posts'));
     }
 

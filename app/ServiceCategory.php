@@ -13,4 +13,15 @@ class ServiceCategory extends Model
         'name',
         'slug'
     ];
+
+    public function services(){
+        return $this->hasManyThrough(
+            'App\Service',
+            'App\ServicePostCategory',
+            'service_categorie_id',
+            'id',
+            'id',
+            'service_id'
+        );
+    }
 }

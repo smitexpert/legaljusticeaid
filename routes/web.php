@@ -198,4 +198,5 @@ Route::prefix('/advice/category')->group(function(){
 
 Route::prefix('/services')->namespace('Frontend')->group(function(){
   Route::get('/', 'ServiceController@index');
+  Route::get('/{slug}', 'ServiceController@single');
 });

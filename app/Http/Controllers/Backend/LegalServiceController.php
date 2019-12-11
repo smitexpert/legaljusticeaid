@@ -32,15 +32,17 @@ class LegalServiceController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required',
+            'name' => 'required|unique:services',
             'description' => 'required',
             'category' => 'required',
             'tags' => 'required'
         ]);
 
-        $slug = Slug::slug($request->title);
+        $slug = Slug::slug($request->name);
 
         $service_id = Service::insertGetId([
             'title' => $request->title,
+            'name' => $request->name,
             'slug' => $slug,
             'description' => $request->description,
             'user_id' => Auth::user()->id,
@@ -79,6 +81,7 @@ class LegalServiceController extends Controller
     public function update(Request $request, $id){
         $request->validate([
             'title' => 'required',
+            'name' => 'required',
             'description' => 'required',
             'category' => 'required',
             'tags' => 'required',
@@ -86,9 +89,10 @@ class LegalServiceController extends Controller
 
         ServiceTag::where('service_id', $id)->delete();
 
-        $slug = Slug::slug($request->title);
+        $slug = Slug::slug($request->name);
         Service::find($id)->update([
             'title' => $request->title,
+            'name' => $request->name,
             'slug' => $slug.'-'.$id,
             'description' => $request->description,
             'user_id' => Auth::user()->id

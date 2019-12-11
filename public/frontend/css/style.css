@@ -401,6 +401,24 @@ textarea.form-control{height:80px !important;}
 .blogList li .view-btn a{font-size:14px; padding: 10px 22px;}
 
 /*********************************************
+		 Service Css
+**********************************************/
+.serviceWrp h3 {
+	font-size: 18px;
+	text-decoration: none;
+    color: #0a225f;
+	font-weight: bold;
+	margin-top: 0;
+	border-bottom: 1px solid #0a225f;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+.serviceName li a {
+	color: #0a225f;
+	margin-left: 10px;
+}
+
+/*********************************************
 		 Side Bar css
 **********************************************/
 .sidebar{background:#fff; border:1px solid #e4e4e4; padding:20px; margin-bottom:30px;}

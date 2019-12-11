@@ -27,8 +27,8 @@
             <div class="widget">
                 <h5 class="widget-title">Categories</h5>
                 <ul class="categories">
-                    @foreach (App\BlogCategory::all() as $category)
-                        <li><a href="{{ url('blogs/category') }}/{{ $category->slug }}"> {{ $category->name }} ({{ App\BlogPostCategory::where('cateogry_id', $category->id)->count() }})</a></li>
+                    @foreach (App\BlogCategory::with('posts')->get() as $category)
+                        <li><a href="{{ url('blogs/category') }}/{{ $category->slug }}"> {{ $category->name }} ({{ $category->posts->count() }})</a></li>
                     @endforeach
                 </ul>
             </div>
