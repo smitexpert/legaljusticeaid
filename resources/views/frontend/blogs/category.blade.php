@@ -1,5 +1,5 @@
 @extends("frontend.layouts.blog")
-@section('title', 'Category: '.$categoryName.' - Legal Study Blog')
+@section('title', 'Category: '.$categoryPosts.' - Legal Study Blog')
 @section('contents')  
 <div class="col-md-8"> 
     <!-- Blog List start -->
@@ -16,7 +16,9 @@
                 <div class="col-md-7 col-sm-8">
                 <div class="post-header">
                     <h4><a href="/blogs/{{ $post->slug }}">{{ $post->title }}</a></h4>
-                    <div class="postmeta">By : <span>{{ $post->user()->first()->name }} </span> Category : <a href="#">{{ $post->category()->first()->name }}</a></div>
+                    <div class="postmeta">By : <span>{{ $post->user->name }} </span> Category : <a href="@foreach($post->category as $category){{ $category->slug }}@endforeach">@foreach ($post->category as $category)
+                        {{ $category->name }}
+                    @endforeach</a></div>
                 </div>
                 <p>{{ str_limit(strip_tags($post->article), 100, '...') }}</p>
                 <div class="readmore"><a href="/blogs/{{ $post->slug }}">Read More</a></div>
