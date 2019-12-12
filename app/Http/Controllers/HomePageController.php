@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Advice;
 use App\BlogPost;
 use App\Lawyer;
 use App\LawyerRating;
 use App\Ratings;
+use App\Service;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Question\Question;
 
 class HomePageController extends Controller
 {
@@ -50,6 +53,9 @@ class HomePageController extends Controller
     public function index(){
         $lawyers = Lawyer::orderBy('experience', 'desc')->limit(6)->get();
         $posts = BlogPost::orderBy('id', 'desc')->limit(8)->get();
-        return view("frontend.index", compact('lawyers', 'posts'));
+        $services = Service::orderBy('id', 'desc')->limit(8)->get();
+        $questions = Advice::orderBy('id', 'asc')->limit(5)->get();
+        $popular_posts = BlogPost::withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
+        return view("frontend.index", compact('lawyers', 'posts', 'services', 'questions', 'popular_posts'));
     }
 }

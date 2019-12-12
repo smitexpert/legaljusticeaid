@@ -20,7 +20,9 @@
             <li>
                 <div class="post-header margin-top30 headingTitle">
                     <h1>{{ $advice->title }}</h1>
-                    <div class="postmeta">Category : <span><a href="#">{{ $advice->category()->first()->name }}</a></span></div>
+                    <div class="postmeta">Category : <span><a href="{{ url('/advice') }}/category/@foreach ($advice->category as $cat){{ $cat->slug }} @endforeach">@foreach ($advice->category as $cat)
+                        {{ $cat->name }}
+                    @endforeach</a></span></div>
                 </div>
                 {!! $advice->details !!}
             </li>
@@ -58,7 +60,7 @@
                     
                     {!! $answer->answer !!}
                     <p class="text-right">
-                        <i>{{ $answer->user()->first()->name }}</i>
+                        <i>{{ $answer->user->name }}</i>
                     </p>
                     @if($answer->is_best == true)
                         <label style="color: green;">Best Answer</label>

@@ -39,6 +39,6 @@ class BlogPost extends Model
     }
 
     public function comments(){
-        return $this->hasMany('App\BlogComment', 'post_id', 'id');
+        return $this->hasMany('App\BlogComment', 'post_id', 'id')->where('status', 1);
     }
 }

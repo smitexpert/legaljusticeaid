@@ -20,12 +20,14 @@
                 <div class="col-md-12">
                 <div class="post-header">
                     <h4><a @if($advice->is_answerd == 1)style="color: green;"@endif href="{{ url('/advice') }}/{{ $advice->id }}">{{ $advice->title }}</a></h4>
-                    <div class="postmeta">From : <a href="{{ url('/advice') }}/category/{{ $advice->category()->first()->slug }}">{{ $advice->category()->first()->name }}</a></div>
+                    <div class="postmeta">From : <a href="{{ url('/advice') }}/category/@foreach ($advice->category as $cat){{ $cat->slug }} @endforeach">@foreach ($advice->category as $cat)
+                        {{ $cat->name }}
+                    @endforeach</a></div>
                 </div>
                 <p>{{ str_limit(strip_tags($advice->details), 100, '...') }}</p>
                 <div class="row">
                   <div class="col-xs-6">
-                    <h4 class="text-primary">Response <span class="badge">{{ App\AdviceAnswer::where('advice_id', $advice->id)->count() }}</span></h4>
+                    <h4 class="text-primary">Response <span class="badge">{{ $advice->answers->count() }}</span></h4>
                   </div>
                   <div class="col-xs-6">
                       <div class="readmore text-right">

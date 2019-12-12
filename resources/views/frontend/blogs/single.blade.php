@@ -11,7 +11,9 @@
             </div>
             <div class="post-header margin-top30">
                 <h4>{{ $post->title }}</h4>
-                <div class="postmeta">By : <span>{{ $post->user()->first()->name }} </span> Category : <span>{{ $post->category()->first()->name }}</span></div>
+                <div class="postmeta">By : <span>{{ $post->user->name }} </span> Category : <span><a href="{{ url('/blogs/category') }}/@foreach ($post->category as $cat){{ $cat->slug }}@endforeach">@foreach ($post->category as $cat)
+                    {{ $cat->name }}
+                @endforeach</a></span></div>
             </div>
             {!! $post->article !!}
         </li>
@@ -45,10 +47,11 @@
                 </div>
             </div>
         </li>
-            @forelse ($post->comments()->where('status', '1')->get() as $comment)
+            @forelse ($post->comments as $comment)
                 <li>
                     <p>{{ $comment->comment }}</p>
-                    <h5 style="text-align:right; font-style:italic;">{{ $comment->username()->first()->name }}</h5>
+                    <h5 style="text-align:right; font-style:italic;">{{ $comment->username->name }}</h5>
+                    {{-- <h5 style="text-align:right; font-style:italic;">{{ $comment->username()->first()->name }}</h5> --}}
                 </li>
             @empty
                 <li>

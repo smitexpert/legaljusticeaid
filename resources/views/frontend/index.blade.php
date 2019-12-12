@@ -119,75 +119,22 @@
             <div class="col-md-12 col-sm-12">
             <div class="headingTitle">
                 <h1>Our <span>Service</span></h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis leo eget maximus volutpat. Nulla eget bibendum urna, et vehicula ante. Donec et diam sodales, pellentesque est a, posuere ex. Curabitur mattis viverra semper.</p>
+                {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis leo eget maximus volutpat. Nulla eget bibendum urna, et vehicula ante. Donec et diam sodales, pellentesque est a, posuere ex. Curabitur mattis viverra semper.</p> --}}
             </div>
             </div>
         </div>
         <ul class="row serv-area">
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block">
-                <div class="service-icon"><i class="fa fa-university" aria-hidden="true"></i></div>
-                <h4>FREE CONSULTING</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block">
-                <div class="service-icon"><i class="fa fa-hourglass" aria-hidden="true"></i></div>
-                <h4>SPECIAL SERVICES</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block">
-                <div class="service-icon"><i class="fa fa-gavel"></i></div>
-                <h4>DISCUSS STRATEGY BUILDS</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block">
-                <div class="service-icon"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i></div>
-                <h4>MEDIATION</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block">
-                <div class="service-icon"><i class="fa fa-balance-scale" aria-hidden="true"></i></div>
-                <h4>CILVIL LAW</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block">
-                <div class="service-icon"><i class="fa fa-users" aria-hidden="true"></i></div>
-                <h4>FAMILY DISPUTES</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block ">
-                <div class="service-icon"><i class="fa fa-link" aria-hidden="true"></i></div>
-                <h4>CRIMINAL CHARGES</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
-            <li class="col-md-3 col-sm-6">
-            <div class="service-block">
-                <div class="service-icon"><i class="fa fa-university" aria-hidden="true"></i></div>
-                <h4>BANKRUPTCY</h4>
-                <hr>
-                <p class="content">Morbi semper, dui sodales aliquet imperdiet, lacus ligula congue neque, quis pretium lectus libero id.</p>
-            </div>
-            </li>
+            @foreach ($services as $service)
+                <li class="col-md-3 col-sm-6">
+                    <a href="{{ url('/services') }}/{{ $service->slug }}">
+                    <div class="service-block">
+                        <h4>{{ $service->name }}</h4>
+                        <hr>
+                        <p class="content">{{ str_limit(strip_tags($service->description), 100) }}</p>
+                    </div>
+                    </a>
+                </li>
+            @endforeach
         </ul>
         </div>
     </div>
@@ -218,4 +165,54 @@
         </div>
     </div>
     <!-- Practice-wrap end --> 
+
+    <div class="practice-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="sidebar">
+                                <div class="widget cases">
+                                    <h5 class="widget-title">Popular Blog Post</h5>
+                                    <ul class="papu-post">
+                                        @foreach ($popular_posts as $post)
+                                            <li>
+                                                <div class="media-left"> <a href="{{ url('/blogs') }}/{{ $post->slug }}"><img src="{{ url('/uploaded/post_thumb') }}/{{ $post->cover }}" alt=""></a> </div>
+                                                <div class="media-body">
+                                                <h3> <a class="media-heading" href="{{ url('/blogs') }}/{{ $post->slug }}">{{ $post->title }}</a> </h3>
+                                                <p>{{ str_limit(strip_tags($post->article), 100) }}</p>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="sidebar">
+                                <div class="widget cases">
+                                    <h5 class="widget-title">Recent Question</h5>
+                                    <ul class="papu-post">
+                                        @foreach ($questions as $question)   
+                                            <li>
+                                                <div class="media-body">
+                                                <h3> <a class="media-heading" href="{{ url('/advice') }}/{{ $question->id }}">{{ $question->title }}</a> </h3>
+                                                <p>{{ str_limit(strip_tags($question->details), 100) }}</p>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

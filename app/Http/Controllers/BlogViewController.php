@@ -15,7 +15,7 @@ class BlogViewController extends Controller
     }
 
     public function singleView($slug){
-        $post = BlogPost::where('slug', $slug)->FirstOrFail();
+        $post = BlogPost::with('comments', 'comments.username')->where('slug', $slug)->FirstOrFail();
         return view('frontend.blogs.single', compact('post'));
     }
 
@@ -28,6 +28,9 @@ class BlogViewController extends Controller
             $categoryName = $slug;
             $categoryPosts = BlogCategory::where('slug', $slug)->paginate(10);
         }
+        // $categoryName = "";
+        // $category = BlogCategory::where('slug', $slug)->firstOrFail();
+        // $category = $category->setRelation('blog_posts', $category->posts);
 
         return view('frontend.blogs.category', compact('categoryPosts', 'categoryName'));
     }

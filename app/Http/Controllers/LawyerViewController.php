@@ -26,7 +26,7 @@ class LawyerViewController extends Controller
     }
 
     public function view($slug){
-        $lawyer = Lawyer::where('slug', $slug)->firstOrFail();
+        $lawyer = Lawyer::with('practiceAreas', 'specializations', 'courts')->where('slug', $slug)->firstOrFail();
         $lawyer->setRelation('ratings', $lawyer->ratings()->paginate(10));
             
         return view("frontend.lawyers.view", compact('lawyer'));
