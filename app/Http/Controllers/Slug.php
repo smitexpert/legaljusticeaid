@@ -22,6 +22,8 @@ class Slug {
         $result = str_replace('?', '', $result);
         $result = str_replace('!', '', $result);
         $result = str_replace('@', '', $result);
+        $result = str_replace(':', '', $result);
+        $result = str_replace(';', '', $result);
         // $result = str_replace('�ে', '', $result);
         
         return $result;

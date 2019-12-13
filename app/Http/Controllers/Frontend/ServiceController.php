@@ -15,7 +15,15 @@ class ServiceController extends Controller
     }
 
     public function single($slug){
-        $service = Service::where('slug', $slug)->FirstOrFail();
-        return view('frontend.services.single', compact('service'));
+        $service = Service::with('category')->where('slug', $slug)->FirstOrFail();
+
+        $relateds = Service::whereHas('category', function ($q) use ($service) {
+            return $q->whereIn('slug', $service->category->pluck('slug')); 
+        })
+        ->where('id', '!=', $service->id) // So you won't fetch same post
+        ->limit(5)
+        ->get();
+
+        return view('frontend.services.single', compact('service', 'relateds'));
     }
 }

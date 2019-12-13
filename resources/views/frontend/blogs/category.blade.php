@@ -1,4 +1,4 @@
-@extends("frontend.layouts.blog")
+@extends("frontend.layouts.blogs.category")
 @section('title', 'Category: '.$categoryPosts.' - Legal Study Blog')
 @section('contents')  
 <div class="col-md-8"> 
@@ -40,4 +40,15 @@
       </div>
     </div>
   </div>
+@endsection
+@section('popularpost')
+  @foreach ($popularposts as $post)
+  <li>
+      <div class="media-left"> <a href="{{ url('/blogs') }}/{{ $post->slug }}"><img src="{{ url('/uploaded/post_thumb') }}/{{ $post->cover }}" alt=""></a> </div>
+      <div class="media-body">
+      <h3> <a class="media-heading" href="{{ url('/blogs') }}/{{ $post->slug }}">{{ $post->title }}</a> </h3>
+      <p>{{ str_limit(strip_tags($post->article), 30) }}</p>
+      </div>
+  </li>
+  @endforeach
 @endsection

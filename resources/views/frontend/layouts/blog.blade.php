@@ -35,36 +35,17 @@
             
             <!-- Related practice -->
             <div class="widget cases">
-                <h5 class="widget-title">Related practice</h5>
+                <h5 class="widget-title">Popular Post</h5>
                 <ul class="papu-post">
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/denterpse-corruption.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Criminal Tax Fraud</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/child-sexual.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Child Sexual Abuse</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/drug-injury.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Drug Injury</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/illegal-construction.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Illegal Construction</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
+                    @foreach ('App\BlogPost'::withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get() as $post)
+                        <li>
+                            <div class="media-left"> <a href="{{ url('/blogs') }}/{{ $post->slug }}"><img src="{{ url('/uploaded/post_thumb') }}/{{ $post->cover }}" alt=""></a> </div>
+                            <div class="media-body">
+                            <h3> <a class="media-heading" href="{{ url('/blogs') }}/{{ $post->slug }}">{{ $post->title }}</a> </h3>
+                            <p>{{ str_limit(strip_tags($post->article), 30) }}</p>
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             </div>

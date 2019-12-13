@@ -33,40 +33,7 @@
                 </ul>
             </div>
             
-            <!-- Related practice -->
-            <div class="widget cases">
-                <h5 class="widget-title">Related practice</h5>
-                <ul class="papu-post">
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/denterpse-corruption.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Criminal Tax Fraud</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/child-sexual.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Child Sexual Abuse</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/drug-injury.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Drug Injury</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="media-left"> <a href="#"><img src="images/illegal-construction.jpg" alt=""></a> </div>
-                    <div class="media-body">
-                    <h3> <a class="media-heading" href="#">Illegal Construction</a> </h3>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    </div>
-                </li>
-                </ul>
-            </div>
+            @yield('recentanswered')
             </div>
         </div>
         </div>

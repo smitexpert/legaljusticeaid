@@ -61,7 +61,7 @@ class LegalBlogController extends Controller
         $slug = $request->title;
 
         BlogPost::findOrFail($post_id)->update([
-            'slug' => Slug::slug($slug)
+            'slug' => Slug::slug($slug).'-'.$post_id
         ]);
 
         for($i=0; $i<count($request->tags); $i++){
@@ -113,8 +113,10 @@ class LegalBlogController extends Controller
             'tags' => 'required'
         ]);
 
+        $slug = $request->title;
         BlogPost::findOrFail($id)->update([
             'title' => $request->title,
+            'slug' => Slug::slug($slug).'-'.$id,
             'article' => $request->details,
         ]);
 

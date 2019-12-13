@@ -441,6 +441,21 @@ textarea.form-control{height:80px !important;}
 .sidebar .categories li a:hover{color:#ff0000;}
 .sidebar .categories li:before {content: "\f0da "; font-family: 'FontAwesome'; position: absolute; left: 0px; color: #000; font-size: 12px; top:3px;}
 /*********************************************
+		 Find A Lawyer
+**********************************************/
+.sidebar-find h1:before {
+	background: none;
+}
+.sidebar-find .img-center {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.sidebar-find .img-center img {
+	width: 120px;
+}
+/*********************************************
 		 Archives css
 **********************************************/
 .archive li{line-height: 45px;}

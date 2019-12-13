@@ -3,8 +3,10 @@
 @section('contents')
         <div class="col-md-8">
 			<div class="serviceWrp">
-				<div class="row">
 					@foreach ($categories as $category)
+						@if((($loop->index+1) % 2) == 1)
+							<div class="row">
+						@endif
 						<div class="col-md-6">
 							<div class="listWrpService">
 								<h3>{{ $category->name }}</h3>
@@ -15,8 +17,10 @@
 								</ul>
 							</div>
 						</div>
+						@if((($loop->index+1) % 2) == 0)
+							</div>
+						@endif
 					@endforeach
-				</div>
 			</div>
         </div>
 @endsection

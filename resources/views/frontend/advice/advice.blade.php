@@ -56,3 +56,19 @@
     </div>
   </div>
 @endsection
+@section('recentanswered')
+    <!-- Related practice -->
+    <div class="widget cases">
+      <h5 class="widget-title">Recent Answered</h5>
+      <ul class="papu-post">
+        @foreach ($recents as $advice)
+          <li>
+              <div class="media-body">
+              <h3> <a class="media-heading" href="{{ $advice->id }}">{{ $advice->title }}</a> </h3>
+              <p>{{ str_limit(strip_tags($advice->details), 60) }}</p>
+              </div>
+          </li>
+        @endforeach
+      </ul>
+  </div>
+@endsection

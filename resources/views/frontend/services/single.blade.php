@@ -10,6 +10,16 @@
                     </div>
                     {!! $service->description !!}
                 </li>
+                <div class="listWrpService">
+                    <h3>@foreach ($service->category as $category)
+                        {{ $category->name }}
+                    @endforeach</h3>
+                    <ul class="serviceName">
+                        @foreach ($relateds as $service)
+                            <li><h4><a href="{{url('/services')}}/{{ $service->slug }}">{{ $service->name }}</a></h4></li>
+                        @endforeach
+                    </ul>
+                </div>
             </ul>
         </div>
     </div>

@@ -1,4 +1,4 @@
-@extends("frontend.layouts.advice")
+@extends("frontend.layouts.advice.single")
 @section('title', 'Advice - '.$advice->title)
 @push('styles')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -91,6 +91,22 @@
         </ul>
     </div>
 </div>
+@endsection
+@section('recentanswered')
+    <!-- Related practice -->
+    <div class="widget cases">
+        <h5 class="widget-title">Related Advice</h5>
+        <ul class="papu-post">
+            @foreach ($relateds as $advice)
+            <li>
+                <div class="media-body">
+                <h3> <a class="media-heading" href="{{ $advice->id }}">{{ $advice->title }}</a> </h3>
+                <p>{{ str_limit(strip_tags($advice->details), 60) }}</p>
+                </div>
+            </li>
+            @endforeach
+        </ul>
+    </div>
 @endsection
 @push('scripts')
 <script src="{{ asset('/') }}textEditor/summernote.js"></script>

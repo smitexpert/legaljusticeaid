@@ -24,26 +24,18 @@
                 </div>
             </div>
 
-            {{-- <div class="widget">
-                <h5 class="widget-title">Categories</h5>
+            @yield('recentanswered')
+            
+            <div class="widget">
+                <h5 class="widget-title">Adivce Categories</h5>
                 <ul class="categories">
-                    @foreach (App\BlogCategory::all() as $category)
-                        <li><a href="{{ url('blogs/category') }}/{{ $category->slug }}"> {{ $category->name }} ({{ App\BlogPostCategory::where('cateogry_id', $category->id)->count() }})</a></li>
+                    @foreach (App\PracticeArea::with('advices')->get() as $area)
+                        <li><a href="{{ url('/advice/category') }}/{{ $area->slug }}"> {{ $area->name }} ({{ $area->advices->count() }})</a></li>
                     @endforeach
                 </ul>
-            </div> --}}
-            
-            <!-- Related practice -->
-            <div class="sidebar-find">
-                <div class="text-center">
-                    <a href="{{ url('lawyers') }}">
-                        <div class="img-center">
-                            <img src="{{ url('frontend/images') }}/lawyer.png" alt="" class="img-circle img-responsive">
-                        </div>
-                        <h1 class="fint-text">FIND A LAWYER</h1>
-                    </a>
-                </div>
             </div>
+            
+            
             </div>
         </div>
         </div>

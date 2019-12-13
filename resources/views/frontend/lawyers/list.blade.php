@@ -1,4 +1,4 @@
-@extends("frontend.layouts.content")
+@extends("frontend.layouts.lawyer")
 @section('title', 'Find A Lawyer')
 @section('contents')  
 <div class="col-md-8">

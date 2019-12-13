@@ -1,4 +1,4 @@
-@extends("frontend.layouts.blog")
+@extends("frontend.layouts.blogs.single")
 @section('title', ''.$post->title)
 @section('contents')  
 <div class="col-md-8"> 
@@ -61,4 +61,15 @@
         </ul>
     </div>
 </div>
+@endsection
+@section('relatedpost')
+    @foreach ($relateds as $post)
+    <li>
+        <div class="media-left"> <a href="{{ url('/blogs') }}/{{ $post->slug }}"><img src="{{ url('/uploaded/post_thumb') }}/{{ $post->cover }}" alt=""></a> </div>
+        <div class="media-body">
+        <h3> <a class="media-heading" href="{{ url('/blogs') }}/{{ $post->slug }}">{{ $post->title }}">{{ $post->title }}</a> </h3>
+        <p>{{ str_limit(strip_tags($post->article), 30) }}</p>
+        </div>
+    </li>
+    @endforeach
 @endsection
