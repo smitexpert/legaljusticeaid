@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'user_role',
+        'name', 'email', 'password', 'user_role', 'email_verification_token',
     ];
 
     /**
@@ -40,6 +40,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
 
     function role_check(){
         return $this->hasOne('App\UserRole', 'id', 'user_role');
