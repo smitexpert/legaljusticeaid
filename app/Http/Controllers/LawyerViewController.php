@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Court;
 use App\Lawyer;
 use App\LawyerRatings;
+use App\Notifications\ModeratorNotification;
 use App\PracticeArea;
 use App\Specialization;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class LawyerViewController extends Controller
 {
@@ -40,13 +43,16 @@ class LawyerViewController extends Controller
             'lawyer' => 'required'
         ]);
 
-        LawyerRatings::insert([
+        $rating = LawyerRatings::create([
             'ratings' => $request->rate,
             'feedback' => $request->feedback,
             'users_id' => $request->user,
-            'lawyers_id' => $request->lawyer,
-            'created_at' => Carbon::now()
+            'lawyers_id' => $request->lawyer
         ]);
+
+        $moderator = User::whereRaw('user_role <= 4')->get();
+        // $moderator->notify(new ModeratorNotification($rating));
+        Notification::send($moderator, new ModeratorNotification($rating));
 
         return back()->with('message', 'Your Feedback submitted successfully!');
     }

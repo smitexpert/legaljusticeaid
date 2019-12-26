@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Advice;
 use App\AdviceAnswer;
 use App\AdviceCategory;
+use App\Notifications\AnswerNotification;
+use App\Notifications\QuestionNotification;
 use App\PracticeArea;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 class AdviceAddController extends Controller
@@ -25,6 +28,15 @@ class AdviceAddController extends Controller
     }
 
     public function addNew(Request $request){
+
+        $notify = [
+            'user' => Auth::user()->name,
+            'question' => $request->title
+        ];
+
+        // $notify['user'] = Auth::user()->name;
+        // $notify['question'] = $request->title;
+
         $request->validate([
             'title' => 'required',
             'details' => 'required',
@@ -58,6 +70,10 @@ class AdviceAddController extends Controller
             'created_at' => Carbon::now()
         ]);
 
+        $moderator = User::whereRaw('user_role <= 4')->get();
+
+        Notification::send($moderator, new QuestionNotification($notify));
+
         return back()->with('status', 'Your Request is pending for publish!');
     }
 
@@ -74,6 +90,19 @@ class AdviceAddController extends Controller
             'answer' => $request->answer,
             'created_at' => Carbon::now()
         ]);
+
+        $notify = [
+            'advice' => Advice::find($id)->title,
+            'user' => Auth::user()->name
+        ];
+
+        $user_id = Advice::find($id)->user_id;
+
+
+        $moderator = User::whereRaw('user_role <= 4')->get();
+
+        Notification::send($moderator, new AnswerNotification($notify));
+        User::find($user_id)->notify(new AnswerNotification($notify));
 
         return back()->with('status', 'Answer Successfully Published');
     }

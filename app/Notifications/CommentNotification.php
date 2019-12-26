@@ -2,25 +2,27 @@
 
 namespace App\Notifications;
 
+use App\BlogPost;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ModeratorNotification extends Notification
+class CommentNotification extends Notification
 {
     use Queueable;
 
-    protected $rating;
+    protected $blognotify;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($rating)
+    public function __construct($blognotify)
     {
-        $this->rating = $rating;
+        $this->blognotify = $blognotify;
     }
 
     /**
@@ -42,9 +44,10 @@ class ModeratorNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return [
-            //
-        ];
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -56,9 +59,7 @@ class ModeratorNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'users_id' => $this->rating->users_id,
-            'lawyers_id' => $this->rating->lawyers_id,
-            'ratings' => $this->rating->ratings
+            'notify' => $this->blognotify
         ];
     }
 }

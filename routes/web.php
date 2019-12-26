@@ -25,10 +25,7 @@ view()->composer('*', function ($view) {
   $view->with('SiteOptions', $siteOptions);
 });
 
-Route::get("/admin/dashboard", "AdminController@index");
-Route::get("/dashboard", "AdminController@index");
-Route::get("/admin", "AdminController@index");
-Route::get('/me', "UserDashboardController@index");
+
 
 Route::group(['middleware' => 'adminRoute'], function(){
   Route::get("/admin/user", "UserController@index");
@@ -168,13 +165,27 @@ Route::group(['middleware' => 'moderatorRoute'], function(){
   Route::get('/admin/moderations/comments/all', 'CommentController@all');
   
   Route::get('/admin/moderations/comments/post/{id}', 'CommentController@postComments');
+
+  Route::post('/notification/read', 'NotificationReadController@read')->name('notification.read');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
+Route::middleware('verified')->group(function(){
+  Route::get("/admin/dashboard", "AdminController@index");
+  Route::get("/dashboard", "AdminController@index");
+  Route::get("/admin", "AdminController@index");
+  Route::get('/me', "UserDashboardController@index");
+  Route::post('/lawyers/{slug}', "LawyerViewController@postFeedback");
+  Route::post('blog/comment/{id}', "BlogCommentController@addComment");
+  Route::post('/new/advices', 'AdviceAddController@addNew');
+  Route::get('/new/advices', 'AdviceAddController@index');
+  Route::post('/advice/{id}', 'AdviceAddController@addAdvice');
+});
+
 
 Route::get('/lawyers', "LawyerViewController@index");
 Route::get('/lawyers/{slug}', "LawyerViewController@view");
-Route::post('/lawyers/{slug}', "LawyerViewController@postFeedback");
 Route::get('/lawyers/practice-areas/{slug}', "LawyerViewController@practiceAreas");
 Route::get('/lawyers/specializations/{slug}', "LawyerViewController@specializations");
 Route::get('/lawyers/courts/{slug}', "LawyerViewController@courts");
@@ -182,14 +193,10 @@ Route::get('/lawyers/courts/{slug}', "LawyerViewController@courts");
 Route::get('/blogs', "BlogViewController@index");
 Route::get('/blogs/{slug}', "BlogViewController@singleView");
 Route::get("/blogs/category/{slug}", "BlogViewController@categoryView");
-Route::post('blog/comment/{id}', "BlogCommentController@addComment");
 
 Route::get('/advices', 'AdviceViewController@index');
-Route::get('/new/advices', 'AdviceAddController@index');
-Route::post('/new/advices', 'AdviceAddController@addNew');
 
 Route::get('/advice/{slug}', 'AdviceViewController@single')->name('advice.single');
-Route::post('/advice/{id}', 'AdviceAddController@addAdvice');
 Route::post('/advice/mark/{slug}', 'AdviceAddController@markAnswer');
 
 Route::prefix('/advice/category')->group(function(){

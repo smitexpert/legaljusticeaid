@@ -64,6 +64,10 @@
 </head>
 
 <body>
+    <form id="csrf">
+        @csrf
+        <input type="hidden" name="userid" value="{{ Auth::user()->id }}">
+    </form>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -84,48 +88,76 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
                         <i class="mdi mdi-bell-outline mx-0"></i>
+                        @if (Auth::user()->unreadNotifications()->count() > 0)
+                            <p class="notification-ripple notification-ripple-bg">
+                                <span class="ripple notification-ripple-bg"></span>
+                                <span class="ripple notification-ripple-bg"></span>
+                                <span class="ripple notification-ripple-bg"></span>
+                            </p>
+                        @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                           <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                          <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-success">
-                                <i class="mdi mdi-information mx-0"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content">
-                              <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                              <p class="font-weight-light small-text mb-0 text-muted">
-                                Just now
-                              </p>
-                            </div>
-                          </a>
-                          <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-warning">
-                                <i class="mdi mdi-settings mx-0"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content">
-                              <h6 class="preview-subject font-weight-normal">Settings</h6>
-                              <p class="font-weight-light small-text mb-0 text-muted">
-                                Private message
-                              </p>
-                            </div>
-                          </a>
-                          <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                              <div class="preview-icon bg-info">
-                                <i class="mdi mdi-account-box mx-0"></i>
-                              </div>
-                            </div>
-                            <div class="preview-item-content">
-                              <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                              <p class="font-weight-light small-text mb-0 text-muted">
-                                2 days ago
-                              </p>
-                            </div>
-                          </a>
+                          @foreach (Auth::user()->notifications()->take(5)->get() as $notification)
+                          @if ($notification->type == 'App\Notifications\ModeratorNotification')
+                              <a class="dropdown-item preview-item" href="{{ url('/admin/ratings') }}">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-success">
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal"><b>New Lawyer Rating</b></h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        {{ $notification->created_at->diffForHumans() }}
+                                    </p>
+                                    </div>
+                                </a>
+                                @elseif($notification->type == 'App\Notifications\CommentNotification')
+                                <a class="dropdown-item preview-item" href="{{ url('/admin/moderations/comments') }}">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="fa fa-bookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-normal"><b>Comment on</b> {{ str_limit($notification->data['notify']['blog_title'], 20) }}</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    {{ $notification->data['notify']['user_id'] }} - {{ $notification->created_at->diffForHumans() }}
+                                </p>
+                                </div>
+                                </a>   
+                                @elseif($notification->type == 'App\Notifications\QuestionNotification')
+                                <a class="dropdown-item preview-item" href="{{ url('/admin/moderations/questions') }}">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="fa fa-question-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-normal">{{ $notification->data['user'] }} <b>Asked An Question</b></h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    {{ $notification->created_at->diffForHumans() }}
+                                </p>
+                                </div>
+                                </a>   
+                                @elseif($notification->type == 'App\Notifications\AnswerNotification')
+                                <a class="dropdown-item preview-item" href="{{ url('/admin/moderations/answers') }}">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="fa fa-pencil-square"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                <h6 class="preview-subject font-weight-normal"><b>Answered:</b> {{ str_limit($notification->data['advice'], 20) }}</h6>
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    {{  $notification->data['user'] }} - {{ $notification->created_at->diffForHumans() }}
+                                </p>
+                                </div>
+                                </a>   
+                                @endif
+                          @endforeach
+                          <a style="display: block" href="#" class="text-center">Read All</a>
                         </div>
                       </li>
                     <li class="nav-item nav-user-icon">
@@ -234,10 +266,10 @@
                         </a>
                         <div class="collapse" id="moderation-area">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/ratings') }}">Ratings</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/comments') }}">Comments</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/questions') }}">Questions</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/answers') }}">Answers</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/ratings') }}">Ratings @if(App\LawyerRatings::where('status', 0)->count() > 0)<span class="badge badge-light">{{ App\LawyerRatings::where('status', 0)->count() }}</span>@endif</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/comments') }}">Comments @if(App\BlogComment::where('status', 0)->count() > 0)<span class="badge badge-light">{{ App\BlogComment::where('status', 0)->count() }}</span>@endif</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/questions') }}">Questions @if(App\Advice::where('status', 0)->count() > 0)<span class="badge badge-light">{{ App\Advice::where('status', 0)->count() }}</span>@endif</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/moderations/answers') }}">Answers @if(App\AdviceAnswer::where('status', 0)->count() > 0)<span class="badge badge-light">{{ App\AdviceAnswer::where('status', 0)->count() }}</span>@endif</a></li>
                             </ul>
                         </div>
                     </li>
@@ -300,6 +332,19 @@
     <!-- Custom js for this page-->
     <script src="{{asset('js/dashboard.js')}}"></script>
     <!-- End custom js for this page-->
+    <script>
+        $("#notificationDropdown").click(function(){
+            var csrf = $("#csrf").serialize();
+            $.ajax({
+                url: '/notification/read',
+                method: 'POST',
+                data: csrf,
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        })
+    </script>
     @stack('scripts')
 </body>
 

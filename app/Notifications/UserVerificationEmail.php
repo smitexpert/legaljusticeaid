@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UserVerificationNotification extends Notification
+class UserVerificationEmail extends Notification
 {
     use Queueable;
 
@@ -43,11 +43,11 @@ class UserVerificationNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        
+        $url = url('/').'/verify/'.$this->user->email_verification_token;
         return (new MailMessage)
-                    ->line('Dear'. $this->user->name)
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Dear '. $this->user->name)
+                    ->action('Verify Now', $url)
+                    ->line('Thank you for registering our website!');
     }
 
     /**

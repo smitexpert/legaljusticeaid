@@ -7,20 +7,19 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ModeratorNotification extends Notification
+class QuestionNotification extends Notification
 {
     use Queueable;
 
-    protected $rating;
-
+    protected $notify;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($rating)
+    public function __construct($notify)
     {
-        $this->rating = $rating;
+        $this->notify = $notify;
     }
 
     /**
@@ -42,9 +41,10 @@ class ModeratorNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return [
-            //
-        ];
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -56,9 +56,8 @@ class ModeratorNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'users_id' => $this->rating->users_id,
-            'lawyers_id' => $this->rating->lawyers_id,
-            'ratings' => $this->rating->ratings
+            'user' => $this->notify['user'],
+            'question' => $this->notify['question']
         ];
     }
 }
