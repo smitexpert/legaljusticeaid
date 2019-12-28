@@ -58,6 +58,7 @@ class AnswerNotification extends Notification
     {
         return [
             'advice' => $this->notify['advice'],
+            'adivce_id' => $this->notify['advice'],
             'user' => $this->notify['user']
         ];
     }

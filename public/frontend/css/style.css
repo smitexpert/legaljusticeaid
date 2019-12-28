@@ -312,7 +312,7 @@ a.slidebtn:hover{background:#000; color:#fff !important;}
 .contact-info {margin-bottom:20px; margin-top:25px;}
 .contact-info h4{font-size:24px; font-weight:bold; color:#fff; margin:25px 0 10px 0}
 .contact-info h5{font-size:1.5em; color:#ff0404;}
-.address{font-size:1em; font-weight:bold; color:#d5d5d5; line-height:24px; margin-top:27px; position:relative; padding-left:42px; width: 400px;}
+.address{ max-width: 100%; font-size:1em; font-weight:bold; color:#d5d5d5; line-height:24px; margin-top:27px; position:relative; padding-left:42px; width: 400px;}
 .address span{display:block;}
 .address:before{content:""; background:url(../images/map-icon.png) no-repeat left; width:24px; height:34px; position:absolute; left:0; top:6px;}
 .phone{font-size:1.5em; font-weight:bold; color:#d5d5d5; margin-top:25px; position:relative; padding-left:42px;}

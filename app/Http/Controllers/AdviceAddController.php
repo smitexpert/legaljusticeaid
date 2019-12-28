@@ -93,6 +93,7 @@ class AdviceAddController extends Controller
 
         $notify = [
             'advice' => Advice::find($id)->title,
+            'advice_id' => $id,
             'user' => Auth::user()->name
         ];
 

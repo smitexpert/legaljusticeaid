@@ -166,7 +166,6 @@ Route::group(['middleware' => 'moderatorRoute'], function(){
   
   Route::get('/admin/moderations/comments/post/{id}', 'CommentController@postComments');
 
-  Route::post('/notification/read', 'NotificationReadController@read')->name('notification.read');
 });
 
 Auth::routes(['verify' => true]);
@@ -183,6 +182,8 @@ Route::middleware('verified')->group(function(){
   Route::post('/advice/{id}', 'AdviceAddController@addAdvice');
 });
 
+
+Route::post('/notification/read', 'NotificationReadController@read')->name('notification.read');
 
 Route::get('/lawyers', "LawyerViewController@index");
 Route::get('/lawyers/{slug}', "LawyerViewController@view");

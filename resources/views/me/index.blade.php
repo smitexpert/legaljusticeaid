@@ -11,7 +11,7 @@
                                 </div>
                             </div>
                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                <h3><strong><a href="http://127.0.0.1:8000/lawyers/sujan-molla-91">Sujan Molla</a></strong></h3>
+                                <h3><strong><a href="http://127.0.0.1:8000/user/{{ Auth::user()->id }}">{{ Auth::user()->name }}</a></strong></h3>
                             </div>
                         </div>
                     </div>

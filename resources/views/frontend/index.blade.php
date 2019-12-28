@@ -63,7 +63,7 @@
             </div>
             <ul class="row lawyer-service">
                 @forelse ($lawyers as $lawyer)
-                <li class="col-md-4 col-xs-6">
+                <li class="col-md-4">
                     <div class="col">
                         <div class="row">
                             <div class="col-md-5">

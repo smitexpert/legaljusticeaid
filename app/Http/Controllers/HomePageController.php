@@ -54,7 +54,7 @@ class HomePageController extends Controller
         $lawyers = Lawyer::orderBy('experience', 'desc')->limit(6)->get();
         $posts = BlogPost::orderBy('id', 'desc')->limit(8)->get();
         $services = Service::orderBy('id', 'desc')->limit(8)->get();
-        $questions = Advice::orderBy('id', 'asc')->limit(5)->get();
+        $questions = Advice::orderBy('id', 'desc')->limit(5)->get();
         $popular_posts = BlogPost::withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
         return view("frontend.index", compact('lawyers', 'posts', 'services', 'questions', 'popular_posts'));
     }

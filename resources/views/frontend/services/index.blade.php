@@ -20,6 +20,11 @@
 						@if((($loop->index+1) % 2) == 0)
 							</div>
 						@endif
+						@if($loop->last)
+							@if((($loop->index+1)%2) == 1)
+								</div>
+							@endif
+						@endif
 					@endforeach
 			</div>
         </div>
