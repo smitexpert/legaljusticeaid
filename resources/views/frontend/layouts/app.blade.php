@@ -47,6 +47,13 @@
         <ul class="topbar-links">
           @auth
           <li><a href="{{ url('dashboard') }}"><i class="fa fa-user" aria-hidden="true"></i> Dashboard</a></li>
+          @if(Auth::user()->user_role == 7)
+            <li><a href="{{ url('notification') }}"><i class="fa fa-bell" aria-hidden="true"></i></a>
+              @if(Auth::user()->unreadNotifications()->count() > 0)
+                <span class="red-dot"></span>
+              @endif
+            </li>
+          @endif
           @else
           <li><a href="{{ url('login') }}"><i class="fa fa-lock" aria-hidden="true"></i> LOGIN</a></li>
           <li><a href="{{ url('register') }}"><i class="fa fa-user" aria-hidden="true"></i> Register</a></li>

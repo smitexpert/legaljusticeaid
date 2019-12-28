@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
               <div class="text-right">
-                <a class="btn btn-success" href="/new/advices">Request For Advice</a>
+                <a class="btn btn-success" href="{{ url('/new/advices') }}">Request For Advice</a>
               </div>
             </div>
           </div>

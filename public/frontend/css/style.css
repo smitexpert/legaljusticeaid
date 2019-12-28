@@ -160,6 +160,83 @@ a.slidebtn{background:#019ae0; color:#fff !important; padding:10px 35px; font-si
 a.slidebtn i{margin-left:10px;}
 a.slidebtn:hover{background:#000; color:#fff !important;}
 
+.notification-preview {
+	display: inline-block;
+	width: 100%;
+	padding: 10px 5px;
+}
+
+.notification-preview:hover {
+	background-color: #efefef;
+	transition: 0s;
+}
+
+.notification-preview .preview-thumb {
+	float: left;
+}
+
+.notification-preview .preview-thumb .preview-icon {
+	width: 46px;
+	height: 46px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #ffffff;
+	border-radius: 50px;
+}
+
+.notification-preview .preview-thumb .bg-success {
+	background-color: #23af47 !important;
+}
+
+.notification-preview .preview-thumb .preview-icon i {
+	font-size: 24px;
+}
+
+.notification-preview .preview-content {
+	float: left;
+	margin-left: 15px;
+	color: #000000;
+}
+
+.notification-preview .preview-content h6 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.notification-preview .preview-content p {
+    margin: 0;
+    font-size: 14px;
+}
+
+span.red-dot {
+    /* width: 10px;
+    height: 10px; */
+    background: white;
+    position: absolute;
+    border-radius: 5px;
+    right: 0;
+	/* margin-right: 20px; */
+	animation-name: reddot;
+	animation-duration: 300ms;
+	animation-iteration-count: infinite;
+}
+
+@keyframes reddot {
+	0% {
+		width: 0;
+		height: 0;
+		margin-right: 20px;
+		margin-top: 5px;
+	}
+	100% {
+		width: 10px;
+		height: 10px;
+		margin-right: 15px;
+		margin-top: 0;
+	}
+}
+
 
 @-webkit-keyframes bounce {
 	0% {transform:translateY(0%);}

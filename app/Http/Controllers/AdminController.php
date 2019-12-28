@@ -18,7 +18,8 @@ class AdminController extends Controller
       if(Auth::user()->user_role <= 4){
         return view('backend.dashboard');
       }else{
-        return view('me.index');
+        return redirect('me');
+        // view('me.index');
         // return view('backend.dashboard');
       }
       

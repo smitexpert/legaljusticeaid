@@ -15,11 +15,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-right">
+                                <a class="btn btn-success" href="{{ url('/new/advices') }}">Request For Advice</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                     <div class="listWrpService">
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="#" class="btn btn-default">Button</a>
-                                <a href="#" class="btn btn-success">Button</a>
+                                <ul class="nav nav-tabs">
+                                    <li @if(url()->current() == url('me')) class="active" @endif><a href="{{ url('me') }}">Feed</a></li>
+                                    <li @if(url()->current() == url('me/questions')) class="active" @endif><a href="{{ url('me/questions') }}">Questions</a></li>
+                                    <li @if(url()->current() == url('me/responses')) class="active" @endif><a href="{{ url('me/responses') }}">Responses</a></li>
+                                    <li class="pull-right">
+                                        <a href="#">Profile</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

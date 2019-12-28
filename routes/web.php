@@ -184,7 +184,7 @@ Route::middleware('verified')->group(function(){
 
 
 Route::post('/notification/read', 'NotificationReadController@read')->name('notification.read');
-
+Route::get('/notification', 'NotificationController@index');
 Route::get('/lawyers', "LawyerViewController@index");
 Route::get('/lawyers/{slug}', "LawyerViewController@view");
 Route::get('/lawyers/practice-areas/{slug}', "LawyerViewController@practiceAreas");
