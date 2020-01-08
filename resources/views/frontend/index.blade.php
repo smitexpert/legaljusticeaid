@@ -106,6 +106,111 @@
                     Please Add Lawyer
                 @endforelse
             </ul>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="lawyer-carousel owl-theme">
+                        <div class="item">
+                            <div class="court-name">
+                                <p><a href="#">Practice Name</a></p>
+                            </div>
+                            <div class="lawyer-info-border">
+                                <div class="lawyer-area">
+                                    <div class="lawyer-img">
+                                        <img src="{{ url('') }}/uploaded/lawyer_images/default.png" alt="">
+                                    </div>
+                                    <div class="lawyer-info">
+                                        <p class="lawyer-name">
+                                            <a href="#">Lawyer Name</a>
+                                        </p>
+                                        <ul class="experts">
+                                            <li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>
+                                        </ul>
+                                        
+                                        <p class="lawyer-address">
+                                            <i class="fa fa-user"></i> Address
+                                        </p>
+                                        <p class="lawyer-experience">
+                                            <i class="fa fa-user"></i> Experience
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="lawyer-practice-area">
+                                    Practice Area: Here...
+                                </p>
+                            </div>
+                            <div class="lawyer-category-btn">
+                                <a href="#">View More Practice Name</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="court-name">
+                                <p><a href="#">Practice Name</a></p>
+                            </div>
+                            <div class="lawyer-info-border">
+                                <div class="lawyer-area">
+                                    <div class="lawyer-img">
+                                        <img src="{{ url('') }}/uploaded/lawyer_images/default.png" alt="">
+                                    </div>
+                                    <div class="lawyer-info">
+                                        <p class="lawyer-name">
+                                            <a href="#">Lawyer Name</a>
+                                        </p>
+                                        <ul class="experts">
+                                            <li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>
+                                        </ul>
+                                        
+                                        <p class="lawyer-address">
+                                            <i class="fa fa-user"></i> Address
+                                        </p>
+                                        <p class="lawyer-experience">
+                                            <i class="fa fa-user"></i> Experience
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="lawyer-practice-area">
+                                    Practice Area: Here...
+                                </p>
+                            </div>
+                            <div class="lawyer-category-btn">
+                                <a href="#">View More Practice Name</a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="court-name">
+                                <p><a href="#">Practice Name</a></p>
+                            </div>
+                            <div class="lawyer-info-border">
+                                <div class="lawyer-area">
+                                    <div class="lawyer-img">
+                                        <img src="{{ url('') }}/uploaded/lawyer_images/default.png" alt="">
+                                    </div>
+                                    <div class="lawyer-info">
+                                        <p class="lawyer-name">
+                                            <a href="#">Lawyer Name</a>
+                                        </p>
+                                        <ul class="experts">
+                                            <li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>
+                                        </ul>
+                                        
+                                        <p class="lawyer-address">
+                                            <i class="fa fa-user"></i> Address
+                                        </p>
+                                        <p class="lawyer-experience">
+                                            <i class="fa fa-user"></i> Experience
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="lawyer-practice-area">
+                                    Practice Area: Here...
+                                </p>
+                            </div>
+                            <div class="lawyer-category-btn">
+                                <a href="#">View More Practice Name</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="clearfix"></div>
             </div>
         </div>
@@ -216,3 +321,24 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $('.lawyer-carousel').owlCarousel({
+            loop:true,
+            nav:true,
+            margin: 10,
+            navText: ['<span class="fa fa-chevron-left"></span>', '<span class="fa fa-chevron-right"></span>'],
+            responsive:{
+                0:{
+                    items:1
+                },
+                540:{
+                    items:2
+                },
+                960:{
+                    items:3
+                }
+            }
+        })
+    </script>
+@endpush
