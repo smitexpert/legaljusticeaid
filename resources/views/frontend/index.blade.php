@@ -193,10 +193,10 @@
                                         </ul>
                                         
                                         <p class="lawyer-address">
-                                            <i class="fa fa-user"></i> Address
+                                            <i class="fa fa-user"></i> Experience
                                         </p>
                                         <p class="lawyer-experience">
-                                            <i class="fa fa-user"></i> Experience
+                                            <i class="fa fa-user"></i> Court Name
                                         </p>
                                     </div>
                                 </div>
