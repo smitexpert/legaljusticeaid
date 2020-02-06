@@ -45,6 +45,28 @@ class Lawyer extends Model
         );
     }
 
+    public function courtsFe(){
+        return $this->hasManyThrough(
+            'App\Court',
+            'App\LawyerCourt',
+            'lawyers_id',
+            'id',
+            'id',
+            'courts_id'
+        )->limit(1);
+    }
+
+    public function practiceAreasFe(){
+        return $this->hasManyThrough(
+            'App\PracticeArea',
+            'App\LawyerPracticeAreas',
+            'lawyers_id',
+            'id',
+            'id',
+            'practice_areas_id'
+        )->limit(1);
+    }
+
     public function specializations(){
         return $this->hasManyThrough(
             'App\Specialization',

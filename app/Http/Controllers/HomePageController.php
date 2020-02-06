@@ -6,6 +6,7 @@ use App\Advice;
 use App\BlogPost;
 use App\Lawyer;
 use App\LawyerRating;
+use App\PracticeArea;
 use App\Ratings;
 use App\Service;
 use Illuminate\Http\Request;
@@ -51,7 +52,9 @@ class HomePageController extends Controller
     }
 
     public function index(){
-        $lawyers = Lawyer::orderBy('experience', 'desc')->limit(6)->get();
+        $lawyers = Lawyer::with('courtsFe', 'practiceAreasFe')->where('verified', 1)->get();
+        // return dd($lawyers);
+        
         $posts = BlogPost::orderBy('id', 'desc')->limit(8)->get();
         $services = Service::orderBy('id', 'desc')->limit(8)->get();
         $questions = Advice::orderBy('id', 'desc')->limit(5)->get();

@@ -230,6 +230,7 @@
                         <div class="collapse" id="lawyer-area">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/lawyers') }}">Layers</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/lawyers/featured') }}">Featured Layers</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/lawyers/add') }}">Add New Lawyer</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/courts') }}">Courts</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/specialization') }}">Specialization</a></li>

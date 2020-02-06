@@ -61,142 +61,43 @@
                 </div>
                 </div>
             </div>
-            <ul class="row lawyer-service">
-                @forelse ($lawyers as $lawyer)
-                <li class="col-md-4">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="lawyer-image"><img src="{{ asset("uploaded/lawyer_images") }}/{{ $lawyer->picture }}" alt=""></div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="head"><a href="{{ url("lawyers") }}/{{ $lawyer->slug }}">{{ $lawyer->name }}</a></div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <ul class="experts">
-                                            {!! LawyerRating($lawyer->id) !!}
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="date">{{ $lawyer->experience }} Yrs Experience</div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p>
-                                            @forelse ($lawyer->practiceAreas as $practiceArea)
-                                                @if($loop->index < 1)
-                                                    {{ $practiceArea->name }} +more
-                                                @endif
-                                            @empty
-                                                Nothing to be show...
-                                            @endforelse
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        
-                        
-                        <div class="clearfix"></div>
-                    </div>
-                </li>
-                @empty
-                    Please Add Lawyer
-                @endforelse
-            </ul>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12">
                     <div class="lawyer-carousel owl-theme">
+                        @foreach ($lawyers as $item)
+                            
+                        @endforeach
                         <div class="item">
                             <div class="court-name">
-                                <p><a href="#">Practice Name</a></p>
+                                @foreach ($item->practiceAreasFe as $practice)
+                                    @if ($practice->index < 1)
+                                        <p><a href="">{{ $practice->name }}</a></p>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="lawyer-info-border">
                                 <div class="lawyer-area">
                                     <div class="lawyer-img">
-                                        <img src="{{ url('') }}/uploaded/lawyer_images/default.png" alt="">
+                                        <img src="{{ asset("uploaded/lawyer_images") }}/{{ $item->picture }}" alt="">
                                     </div>
                                     <div class="lawyer-info">
                                         <p class="lawyer-name">
-                                            <a href="#">Lawyer Name</a>
+                                            <a href="{{ url("lawyers") }}/{{ $item->slug }}">{{ $item->name }}</a>
                                         </p>
                                         <ul class="experts">
-                                            <li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>
+                                            {!! LawyerRating($item->id) !!}
                                         </ul>
                                         
                                         <p class="lawyer-address">
-                                            <i class="fa fa-user"></i> Address
+                                            <i class="fa fa-user"></i> {{ $item->experience }} Yrs Experience
                                         </p>
                                         <p class="lawyer-experience">
-                                            <i class="fa fa-user"></i> Experience
-                                        </p>
-                                    </div>
-                                </div>
-                                <p class="lawyer-practice-area">
-                                    Practice Area: Here...
-                                </p>
-                            </div>
-                            <div class="lawyer-category-btn">
-                                <a href="#">View More Practice Name</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="court-name">
-                                <p><a href="#">Practice Name</a></p>
-                            </div>
-                            <div class="lawyer-info-border">
-                                <div class="lawyer-area">
-                                    <div class="lawyer-img">
-                                        <img src="{{ url('') }}/uploaded/lawyer_images/default.png" alt="">
-                                    </div>
-                                    <div class="lawyer-info">
-                                        <p class="lawyer-name">
-                                            <a href="#">Lawyer Name</a>
-                                        </p>
-                                        <ul class="experts">
-                                            <li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                        
-                                        <p class="lawyer-address">
-                                            <i class="fa fa-user"></i> Address
-                                        </p>
-                                        <p class="lawyer-experience">
-                                            <i class="fa fa-user"></i> Experience
-                                        </p>
-                                    </div>
-                                </div>
-                                <p class="lawyer-practice-area">
-                                    Practice Area: Here...
-                                </p>
-                            </div>
-                            <div class="lawyer-category-btn">
-                                <a href="#">View More Practice Name</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="court-name">
-                                <p><a href="#">Practice Name</a></p>
-                            </div>
-                            <div class="lawyer-info-border">
-                                <div class="lawyer-area">
-                                    <div class="lawyer-img">
-                                        <img src="{{ url('') }}/uploaded/lawyer_images/default.png" alt="">
-                                    </div>
-                                    <div class="lawyer-info">
-                                        <p class="lawyer-name">
-                                            <a href="#">Lawyer Name</a>
-                                        </p>
-                                        <ul class="experts">
-                                            <li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                        
-                                        <p class="lawyer-address">
-                                            <i class="fa fa-user"></i> Experience
-                                        </p>
-                                        <p class="lawyer-experience">
-                                            <i class="fa fa-user"></i> Court Name
+                                            <i class="fa fa-user"></i> 
+                                            @foreach ($item->courtsFe as $court)
+                                                @if ($court->index < 1)
+                                                    <p><a href="">{{ $court->name }}</a></p>
+                                                @endif
+                                            @endforeach
                                         </p>
                                     </div>
                                 </div>
@@ -210,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="clearfix"></div>
             </div>
         </div>

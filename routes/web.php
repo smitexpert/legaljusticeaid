@@ -65,6 +65,9 @@ Route::group(['middleware' => 'managerRoute'], function () {
   Route::get("/admin/practicearea/remove/{id}", "PracticeAreaController@remove");
   Route::get("/admin/practicearea/edit/{id}", "PracticeAreaController@edit");
   Route::post("/admin/practicearea/edit", "PracticeAreaController@update");
+  Route::get('/admin/lawyers/featured', "LawyerController@featured");
+  Route::get('/admin/lawyers/featured/{id}/add', "LawyerController@featuredAdd");
+  Route::get('/admin/lawyers/featured/{id}/remove', "LawyerController@featuredRemove");
   Route::get('/admin/lawyers', "LawyerController@index");
   Route::get('/admin/lawyers/add', "LawyerController@add");
   Route::post('/admin/lawyers/add', "LawyerController@insert");

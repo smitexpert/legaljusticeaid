@@ -34,5 +34,6 @@ class PracticeArea extends Model
             'id',
             'advice_id'
         );
+        
     }
 }

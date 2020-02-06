@@ -191,4 +191,25 @@ class LawyerController extends Controller
 
         return back()->with('status', 'Lawyer Successfully Updated!');
     }
+
+    public function featured(){
+        $lawyers = Lawyer::all();
+        return view('backend.lawyers.featured', compact('lawyers'));
+    }
+
+    public function featuredAdd($id){
+        Lawyer::where('id', $id)->update([
+            'verified' => 1
+        ]);
+
+        return back();
+    }
+
+    public function featuredRemove($id){
+        Lawyer::where('id', $id)->update([
+            'verified' => 0
+        ]);
+
+        return back();
+    }
 }
