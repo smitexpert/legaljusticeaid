@@ -222,6 +222,19 @@
                     @if ( Auth::user()->user_role <= 2 )
                       
                     <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#home-area" aria-expanded="false" aria-controls="home-area">
+                            <i class="mdi mdi-view-array menu-icon"></i>
+                            <span class="menu-title">Home Page Setting</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="home-area">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/blog/slider') }}">Manage Slider</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ url('/admin/blog/category') }}">Manage Category Post</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#lawyer-area" aria-expanded="false" aria-controls="lawyer-area">
                             <i class="mdi mdi-view-array menu-icon"></i>
                             <span class="menu-title">Lawyers</span>

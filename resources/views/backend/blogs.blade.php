@@ -65,7 +65,7 @@
                                                 <div class="btn-group">
                                                     <a href="{{ url('/admin/blogs/remove') }}/{{ $post->id }}" class="btn btn-sm btn-danger">Remove</a>
                                                     <a href="{{ url('/admin/blogs/edit') }}/{{ $post->id }}" class="btn btn-sm btn-info">Edit</a>
-                                                    <a href="#" class="btn btn-sm btn-primary" target="_blank">View</a>
+                                                    <a href="{{ url('/blogs') }}/{{ $post->slug }}" class="btn btn-sm btn-primary" target="_blank">View</a>
                                                 </div>
                                             </td>
                                         </tr>

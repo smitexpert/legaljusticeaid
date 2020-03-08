@@ -61,12 +61,11 @@
                 </div>
                 </div>
             </div>
-            {{-- <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     <div class="lawyer-carousel owl-theme">
                         @foreach ($lawyers as $item)
                             
-                        @endforeach
                         <div class="item">
                             <div class="court-name">
                                 @foreach ($item->practiceAreasFe as $practice)
@@ -109,9 +108,10 @@
                                 <a href="#">View More Practice Name</a>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <div class="clearfix"></div>
             </div>
         </div>

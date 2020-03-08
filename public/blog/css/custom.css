@@ -1,0 +1,13 @@
+.ts-category-list li a {
+    padding: 5px 20px;
+    min-height: 0;
+    color: #1c1c1c;
+}
+
+.ts-category-list li a::before {
+    background-color: #ffffff;
+}
+
+.ts-category-list li a span.bar {
+    border-bottom: 1px dashed #1c1c1c;
+}

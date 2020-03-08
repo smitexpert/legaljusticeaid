@@ -51,7 +51,7 @@ class LegalBlogController extends Controller
             $extension = $photo->getClientOriginalExtension();
             $photo_name = $post_id.'.'.$extension;
             Image::make($photo)->crop(370, 250)->save(base_path("public/uploaded/post_thumb")."/".$photo_name);
-            Image::make($photo)->resize(770, 446)->save(base_path("public/uploaded/post_images")."/".$photo_name);
+            Image::make($photo)->resize(850, 560)->save(base_path("public/uploaded/post_images")."/".$photo_name);
             BlogPost::findOrFail($post_id)->update([
                 'cover' => $photo_name
             ]);
@@ -123,21 +123,24 @@ class LegalBlogController extends Controller
         $post_id = $id;
 
         if($request->hasFile('cover')){
-            if(BlogPost::findOrFail($id)->cover != "default_cover.jpg"){
-                $photo = BlogPost::findOrFail($id)->cover;
+            
+            $post = BlogPost::findOrFail($id);
 
-                Storage::delete(base_path("public/uploaded/post_thumb").$photo);
-                Storage::delete(base_path("public/uploaded/post_images").$photo);
-
-                $photo = $request->cover;
-                $extension = $photo->getClientOriginalExtension();
-                $photo_name = $post_id.'.'.$extension;
-                Image::make($photo)->crop(370, 250)->save(base_path("public/uploaded/post_thumb")."/".$photo_name);
-                Image::make($photo)->resize(770, 446)->save(base_path("public/uploaded/post_images")."/".$photo_name);
-                BlogPost::findOrFail($post_id)->update([
-                    'cover' => $photo_name
-                ]);
+            if($post->cover != 'default_cover.jpg')
+            {
+                // return 'Should Delete';
             }
+            
+            $photo = $request->cover;
+            $extension = $photo->getClientOriginalExtension();
+            $photo_name = $post_id.'.'.$extension;
+            Image::make($photo)->crop(370, 250)->save(base_path("public/uploaded/post_thumb")."/".$photo_name);
+            Image::make($photo)->resize(850, 560)->save(base_path("public/uploaded/post_images")."/".$photo_name);
+            BlogPost::findOrFail($post_id)->update([
+                'cover' => $photo_name
+            ]);
+                
+
         }
 
         BlogPostTag::where('post_id', $id)->delete();

@@ -24,4 +24,16 @@ class BlogCategory extends Model
             'post_id'
         );
     }
+
+    public function home_posts()
+    {
+        return $this->hasManyThrough(
+            'App\BlogPost',
+            'App\BlogPostCategory',
+            'cateogry_id',
+            'id',
+            'id',
+            'post_id'
+        )->limit(5);
+    }
 }
