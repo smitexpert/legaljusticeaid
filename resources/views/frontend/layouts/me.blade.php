@@ -27,6 +27,7 @@
 <link href="{{ url('frontend') }}/css/font-awesome.css" rel="stylesheet">
 <link href="{{ url('frontend') }}/css/owl.carousel.css" rel="stylesheet">
 <link href="{{ url('frontend') }}/css/style.css" rel="stylesheet">
+<link href="{{ url('frontend') }}/custom.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
 @stack('styles')
