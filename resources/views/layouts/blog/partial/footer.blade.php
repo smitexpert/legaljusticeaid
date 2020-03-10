@@ -110,7 +110,7 @@
 			<div class="row align-items-center justify-content-between">
 				<div class="col-12 text-center">
 					<div class="copyright-content text-light">
-						<p>&copy; 2019, Digiqole - News Magazine html Template. All rights reserved.</p>
+						<p style="color: #ffffff;">&copy; {{ date('Y') }} @if($SiteOptions != null) <a href="/">{{ $SiteOptions->name }}</a> @endif Developed By <a href="https://github.com/smitexpert">Sujan Molla</a></p>
 					</div>
 				</div>
 			</div>

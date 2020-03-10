@@ -7,7 +7,7 @@
 	<!-- Basic Page Needs
 	================================================== -->
 	<meta charset="utf-8">
-	<title>Digiqole - News Magazine Newspaper HTML Template</title>
+	<title>Legal Study Blog</title>
 
 	<!-- Mobile Specific Metas
 	================================================== -->
@@ -127,7 +127,7 @@
 				<div class="owl-carousel dot-style2" id="trending-slider">
 					@foreach ($featured as $item)					
 						<div class="item post-overaly-style post-md" style="background-image:url({{ asset('uploaded/post_images') }}/{{ $item->blog_post->cover }})">
-							<a href="#" class="image-link">&nbsp;</a>
+							<a href="{{ url('blogs') }}/{{ $item->blog_post->slug }}" class="image-link">&nbsp;</a>
 							<div class="overlay-post-content">
 								<div class="post-content">
 									<div class="grid-category">
@@ -137,7 +137,7 @@
 									</div>
 
 									<h2 class="post-title">
-										<a href="#">{{ $item->blog_post->title }} </a>
+										<a href="{{ url('blogs') }}/{{ $item->blog_post->slug }}">{{ $item->blog_post->title }} </a>
 									</h2>
 									<div class="post-meta">
 										<ul>
@@ -183,7 +183,7 @@
 													<span class="post-author"><a href="#"><i class="fa fa-user"></i> {{ $post->user->name }}</a></span>
 													<span class="post-date"><i class="fa fa-clock-o"></i> {{ date('d M, Y', strtotime($post->created_at)) }}</span>
 												</div>
-												<p>{{ Str::limit($post->article, 130) }}</p>
+												<p>{{ Str::limit(strip_tags($post->article), 130) }}</p>
 											</div>
 										</div>
 									</div>
@@ -253,7 +253,7 @@
 													<span class="post-author"><a href="#"><i class="fa fa-user"></i> {{ $post->user->name }}</a></span>
 													<span class="post-date"><i class="fa fa-clock-o"></i> {{ date('d M, Y', strtotime($post->created_at)) }}</span>
 												</div>
-												<p>{{ Str::limit($post->article, 130) }}</p>
+												<p>{{ Str::limit(strip_tags($post->article), 130) }}</p>
 											</div>
 										</div>
 									</div>
@@ -1863,7 +1863,7 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="load-more-btn text-center">
-									<button class="btn"> Load More </button>
+									<a href="{{ route('blog.recent') }}" class="btn"> Load More </a>
 							</div>
 						</div>
 					</div>

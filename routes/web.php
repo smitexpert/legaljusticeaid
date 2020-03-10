@@ -206,9 +206,7 @@ Route::get('/lawyers/practice-areas/{slug}', "LawyerViewController@practiceAreas
 Route::get('/lawyers/specializations/{slug}', "LawyerViewController@specializations");
 Route::get('/lawyers/courts/{slug}', "LawyerViewController@courts");
 
-Route::get('/blogs', "BlogViewController@index");
-Route::get('/blogs/{slug}', "BlogViewController@singleView");
-Route::get("/blogs/category/{slug}", "BlogViewController@categoryView");
+
 
 Route::get('/advices', 'AdviceViewController@index');
 
@@ -224,8 +222,13 @@ Route::prefix('/services')->namespace('Frontend')->group(function(){
   Route::get('/{slug}', 'ServiceController@single');
 });
 
-Route::prefix('/new/blog')->namespace('Blog')->name('blog')->group(function(){
+Route::prefix('/blogs')->namespace('Blog')->name('blog')->group(function(){
   Route::get('/', 'IndexController@index')->name('.index');
-  Route::get('/single', 'IndexController@single')->name('.single');
-  Route::get('/category', 'IndexController@category')->name('.category');
+  Route::get('/recent', 'IndexController@recent')->name('.recent');
+  Route::get('/{slug}', 'IndexController@single')->name('.single');
+  Route::get('/category/{slug}', 'IndexController@category')->name('.category');
+
+  // Route::get('/blogs', "BlogViewController@index");
+  // Route::get('/blogs/{slug}', "IndexController@single");
+  // Route::get("/blogs/category/{slug}", "BlogViewController@categoryView");
 });

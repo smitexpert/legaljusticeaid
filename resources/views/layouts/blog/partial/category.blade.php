@@ -6,7 +6,7 @@
     <ul class="ts-category-list">
         @foreach (App\BlogCategory::all() as $category)
             <li>
-                <a href="#">
+                <a href="{{ url('/blogs/category') }}/{{ $category->slug }}">
                     <span> {{ $category->name }} </span>
                     <span class="bar"></span> 
                     <span class="category-count">{{ $category->posts->count() }}</span>

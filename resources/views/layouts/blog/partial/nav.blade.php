@@ -16,11 +16,11 @@
                             </li>
             
                             <li>
-                                <a href="{{ route('blog.category') }}">Category</a>
+                                <a href="#">Category</a>
                             </li>
             
                             <li>
-                                <a href="{{ route('blog.single') }}">Single</a>
+                                <a href="#">Single</a>
                             </li>
                         </ul><!--/ Nav ul end -->
                     </div><!--/ Collapse end -->

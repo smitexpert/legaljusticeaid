@@ -7,7 +7,7 @@
 	<!-- Basic Page Needs
 	================================================== -->
 	<meta charset="utf-8">
-	<title>Digiqole - News Magazine Newspaper HTML Template</title>
+	<title>@yield('title') - @if($SiteOptions != null) {{ $SiteOptions->name }} @endif</title>
 
 	<!-- Mobile Specific Metas
 	================================================== -->
