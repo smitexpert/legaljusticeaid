@@ -12,15 +12,24 @@
                         <ul class="nav navbar-nav">
                             <li class="active">
                                 
-                                <a href="{{ route('blog.index') }}">Home</a>
+                                <a href="/">Home</a>
                             </li>
             
                             <li>
-                                <a href="#">Category</a>
+                                <a href="{{ url('lawyers') }}">Find A Lawyer</a>
                             </li>
             
                             <li>
-                                <a href="#">Single</a>
+                                <a href="{{ url('services') }}">Service</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('blog.index') }}">Blog</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('advices') }}">Legal Advice</a>
+                            </li>
+                            <li>
+                                <a href="#">About</a>
                             </li>
                         </ul><!--/ Nav ul end -->
                     </div><!--/ Collapse end -->

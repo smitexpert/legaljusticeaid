@@ -39,6 +39,6 @@ class HomeCategoryController extends Controller
             'created_at' => now()
         ]);
 
-        return $request->all();
+        return back();
     }
 }
