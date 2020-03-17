@@ -232,3 +232,9 @@ Route::prefix('/blogs')->namespace('Blog')->name('blog')->group(function(){
   // Route::get('/blogs/{slug}', "IndexController@single");
   // Route::get("/blogs/category/{slug}", "BlogViewController@categoryView");
 });
+
+Route::prefix('new/blog')->namespace('Site')->name('new')->group(function(){
+  Route::get('/', 'BlogController@index');
+  Route::get('/category', 'BlogController@category');
+  Route::get('/single', 'BlogController@single');
+});

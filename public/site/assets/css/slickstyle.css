@@ -1,0 +1,8 @@
+.slicknav_menu {
+    background: none;
+}
+
+.slicknav_nav a:hover {
+    background: #192a56;
+    color: #f39c12;
+}
