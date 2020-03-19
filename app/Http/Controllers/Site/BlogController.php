@@ -19,12 +19,12 @@ class BlogController extends Controller
         if(BlogCategory::where('slug', $slug)->exists()){
             $category = BlogCategory::where('slug', $slug)->firstOrFail();
             $categoryName = $category->name;
-            $categoryPosts = $category->posts()->orderBy('id', 'desc')->paginate(7);
+            $categoryPosts = $category->posts()->orderBy('id', 'desc')->paginate(11);
             $popularposts =  $category->posts()->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
         }else{
             $category = BlogCategory::where('slug', $slug)->firstOrFail();
             $categoryName = $slug;
-            $categoryPosts = BlogCategory::where('slug', $slug)->paginate(9);
+            $categoryPosts = BlogCategory::where('slug', $slug)->paginate(11);
             $popularposts =  $category->posts()->withCount('comments')->orderBy('comments_count', 'desc')->limit(5)->get();
         }
         // $categoryName = "";
