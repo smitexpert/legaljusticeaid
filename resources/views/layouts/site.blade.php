@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        @if (trim($__env->yieldContent('title')))
+        @yield('title') -
+        @endif
+        @if($SiteOptions != null)
+        {{ $SiteOptions->name }}
+        @else
+        {{ "Site Name" }}
+        @endif
+    </title>
     <link rel="stylesheet" href="{{ url('site') }}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('site') }}/assets/fonts/css/all.min.css">
     <link rel="stylesheet" href="{{ url('site') }}/assets/css/slicknav.min.css">
@@ -18,14 +27,14 @@
             <div class="header_item">
                 <div class="item">
                     <div class="logo">
-                        <a href="#">
-                            <img src="{{ url('site') }}/assets/images/legal-justice-aid.png" alt="">
+                        <a href="{{ url('/') }}">
+                            <img src="@if($SiteOptions != null){{ asset("uploaded/logo") }}/{{ $SiteOptions->logo }}@else{{ asset("uploaded/logo/default-logo.jpg") }}@endif" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="item">
                     <div class="date">
-                        <p><strong><span class="fas fa-map-marker-alt"></span> Dhaka</strong> 12 March - 2020</p>
+                        <p>{{ date('d F - Y', strtotime(now())) }}</p>
                     </div>
                 </div>
                 <div class="item">
@@ -48,11 +57,11 @@
         <div class="container">
             <nav>
                 <ul id="menu">
-                    <li><a class="active" href="#">Home</a></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/lawyers') }}">Find a Lawyer</a></li>
+                    <li><a href="{{ url('/services') }}">Services</a></li>
+                    <li><a class="active" href="{{ url('/blogs') }}">Blogs</a></li>
+                    <li><a href="{{ url('/about') }}">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -71,8 +80,8 @@
     <div class="container">
         <div class="items">
             <div class="logo">
-                <a href="#">
-                    <img src="{{ url('site') }}/assets/images/legal-justice-aid.png" alt="">
+                <a href="{{ url('/') }}">
+                    <img src="@if($SiteOptions != null){{ asset("uploaded/logo") }}/{{ $SiteOptions->logo }}@else{{ asset("uploaded/logo/default-logo.jpg") }}@endif" alt="">
                 </a>
             </div>
             <div class="google_play">
@@ -90,16 +99,22 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="site_information">
-                    <h2><a href="#">Legal Justice Aid</a></h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum facere obcaecati excepturi?</p>
+                    <h2><a href="{{ url('/') }}">
+                        @if($SiteOptions != null)
+                        {{ $SiteOptions->name }}
+                        @else
+                        {{ "Site Name" }}
+                        @endif
+                    </a></h2>
+                    <p>@if($SiteOptions != null){{ $SiteOptions->description }}@else Please Add Site Descriptions. @endif</p>
                 </div>
                 <div class="site_contact">
                     <address>
-                        <span class="fa fa-map-marker"></span> Lorem ipsum dolor sit amet.
+                        <span class="fa fa-map-marker"></span> @if($SiteOptions != null)<span>{{ $SiteOptions->address }}</span>@else{{ 'Please Add Address' }}@endif
                     </address>
                     <ul>
-                        <li><a href="#"><span class="fa fa-phone-alt"></span> 01700000000</a></li>
-                        <li><a href="#"><span class="fa fa-envelope"></span> 01700000000</a></li>
+                        <li><a href="tel:@if($SiteOptions != null){{ $SiteOptions->phone }}@else{{ '000000000' }}@endif"><span class="fa fa-phone-alt"></span> @if($SiteOptions != null){{ $SiteOptions->phone }}@else{{ '000000000' }}@endif</a></li>
+                        <li><a href="mailto:@if($SiteOptions != null){{ $SiteOptions->email }}@else{{ 'sm@mail.com' }}@endif"><span class="fa fa-envelope"></span> @if($SiteOptions != null){{ $SiteOptions->email }}@else{{ 'sm@mail.com' }}@endif</a></li>
                     </ul>
                 </div>
             </div>
@@ -118,7 +133,13 @@
             <div class="col-md-12">
                 <div class="text-center">
                     <div class="footer-creadit">
-                        <a href="#">Site Name</a> @ 2020 || Developed BY <a href="#">Sujan Molla</a>
+                        <a href="{{ url('/') }}">
+                            @if($SiteOptions != null)
+                            {{ $SiteOptions->name }}
+                            @else
+                            {{ "Site Name" }}
+                            @endif
+                        </a> @ {{ date('Y') }} || Developed BY <a href="#">Sujan Molla</a>
                     </div>
                 </div>
             </div>

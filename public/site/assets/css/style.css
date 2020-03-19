@@ -2,6 +2,11 @@ html {
     scroll-behavior: smooth;
 }
 
+.pagination {
+    justify-content: center;
+    margin: 25px 0;
+}
+
 .section {
     width: 100%;
     height: auto;
@@ -579,7 +584,7 @@ html {
     overflow: hidden;
 }
 
-.section.content_two .category_three .body .big a {
+.section.content_two .category_three .body .big h4 a {
     color: #ffffff;
     font-size: 18px;
     font-weight: normal;

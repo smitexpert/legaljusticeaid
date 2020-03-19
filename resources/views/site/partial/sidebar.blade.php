@@ -3,7 +3,7 @@
         
         @forelse (App\HomeCategory::where('table_name', 1)->get() as $item)
             <div class="header">
-                <h3><a href="#">{{ $item->category->name }}</a></h3>
+                <h3><a href="{{ url('blogs/category') }}/{{ $item->category->slug }}">{{ $item->category->name }}</a></h3>
             </div>
         @empty
             <div class="header">
@@ -37,76 +37,20 @@
         </div>
         <div class="body">
             <div id="recent_post" class="tab_post show">
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
+                @foreach (App\BlogPost::orderBy('id', 'desc')->limit(10)->get() as $post)
+                    <div class="item">
+                        <a href="{{ url('blogs') }}/{{ $post->slug }}"><img class="img-fluid" src="{{ url('uploaded/post_images') }}/{{ $post->cover }}" alt=""></a>
+                        <h4><a href="{{ url('blogs') }}/{{ $post->slug }}">{{ $post->title }}</a></h4>
+                    </div>
+                @endforeach
             </div>
             <div id="popular_post" class="tab_post">
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
-                <div class="item">
-                    <a href="#"><img class="img-fluid" src="https://via.placeholder.com/510x350.png" alt=""></a>
-                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam.</a></h4>
-                </div>
+                @foreach (App\BlogPost::withCount('comments')->orderBy('comments_count', 'desc')->limit(10)->get() as $post)
+                    <div class="item">
+                        <a href="{{ url('blogs') }}/{{ $post->slug }}"><img class="img-fluid" src="{{ url('uploaded/post_images') }}/{{ $post->cover }}" alt=""></a>
+                        <h4><a href="{{ url('blogs') }}/{{ $post->slug }}">{{ $post->title }}</a></h4>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

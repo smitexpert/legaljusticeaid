@@ -222,19 +222,21 @@ Route::prefix('/services')->namespace('Frontend')->group(function(){
   Route::get('/{slug}', 'ServiceController@single');
 });
 
-Route::prefix('/blogs')->namespace('Blog')->name('blog')->group(function(){
-  Route::get('/', 'IndexController@index')->name('.index');
-  Route::get('/recent', 'IndexController@recent')->name('.recent');
-  Route::get('/{slug}', 'IndexController@single')->name('.single');
-  Route::get('/category/{slug}', 'IndexController@category')->name('.category');
+Route::prefix('/blogs')->namespace('Site')->name('blog')->group(function(){
+  Route::get('/', 'BlogController@index');
+  Route::get('/category/{slug}', 'BlogController@category');
+  Route::get('/{slug}', 'BlogController@single');
+  // Route::get('/recent', 'IndexController@recent')->name('.recent');
+  // Route::get('/{slug}', 'IndexController@single')->name('.single');
+  // Route::get('/category/{slug}', 'IndexController@category')->name('.category');
 
   // Route::get('/blogs', "BlogViewController@index");
   // Route::get('/blogs/{slug}', "IndexController@single");
   // Route::get("/blogs/category/{slug}", "BlogViewController@categoryView");
 });
 
-Route::prefix('new/blog')->namespace('Site')->name('new')->group(function(){
-  Route::get('/', 'BlogController@index');
-  Route::get('/category', 'BlogController@category');
-  Route::get('/single', 'BlogController@single');
-});
+// Route::prefix('new/blog')->namespace('Site')->name('new')->group(function(){
+//   Route::get('/', 'BlogController@index');
+//   Route::get('/category/{slug}', 'BlogController@category');
+//   Route::get('/single', 'BlogController@single');
+// });
